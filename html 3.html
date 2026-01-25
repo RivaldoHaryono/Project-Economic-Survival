@@ -1,0 +1,1352 @@
+/* Menu Grid */
+.menu-category {
+margin-bottom: 4
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mama's Bona Restaurant - Elegant Experience Ever</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #d4af37;
+            color: #0a0a0a;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(212, 175, 55, 0.1)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23333" stroke-width="0.5"/></pattern></defs><rect fill="%23111" width="1200" height="800"/><rect fill="url(%23grid)" width="1200" height="800"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(50px, 50px) rotate(180deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #f5f5f5;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f5d576 100%);
+            color: #0a0a0a;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.4s;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #f5d576 0%, #d4af37 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        h2::after {
+            content: '✦';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 1rem;
+        }
+
+        section>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        #menu,
+        #about,
+        #contact {
+            padding-top: 8rem;
+        }
+
+        /* Menu Grid */
+        .menu-categories {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .menu-category {
+            margin-bottom: 5rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            padding: 2rem;
+            border: 1px solid #2a2a2a;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 2px solid #2a2a2a;
+            transition: all 0.4s;
+        }
+
+        .menu-item:hover .menu-item-image {
+            border-color: #d4af37;
+            transform: scale(1.05);
+        }
+
+        .menu-item-video {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #2a2a2a;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #d4af37;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .menu-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow:
+                0 20px 40px rgba(212, 175, 55, 0.2),
+                0 0 60px rgba(212, 175, 55, 0.1),
+                inset 0 0 20px rgba(212, 175, 55, 0.05);
+        }
+
+        .menu-item:hover::after {
+            opacity: 0.3;
+        }
+
+        .menu-item h3 {
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item .price {
+            font-size: 1.4rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f5d576 100%);
+            color: #0a0a0a;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .add-to-cart:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #f5d576 0%, #d4af37 100%);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #d4af37;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .close-modal {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #d4af37;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .qty-btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #d4af37;
+        }
+
+        /* Chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4af37 0%, #f5d576 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1500;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+            transition: all 0.4s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: 0 8px 35px rgba(212, 175, 55, 0.8), 0 0 50px rgba(212, 175, 55, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.8);
+        }
+
+        .chatbot-toggle::before {
+            content: '💬';
+            font-size: 2rem;
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: #1a1a1a;
+            border: 2px solid #d4af37;
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+        }
+
+        .chatbot.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            padding: 0.8rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: #333;
+            align-self: flex-start;
+        }
+
+        .message.user {
+            background: #d4af37;
+            color: #0a0a0a;
+            align-self: flex-end;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            background: #333;
+            border: none;
+            color: #f5f5f5;
+        }
+
+        .chatbot-input button {
+            padding: 0.8rem 1.5rem;
+            background: #d4af37;
+            border: none;
+            color: #0a0a0a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Admin Panel */
+        #admin {
+            background: #0f0f0f;
+        }
+
+        .admin-login,
+        .admin-panel {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 2rem;
+            border: 1px solid #d4af37;
+        }
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #333;
+            border: 1px solid #555;
+            color: #f5f5f5;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .file-info {
+            font-size: 0.85rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .preview-container {
+            margin-bottom: 1rem;
+            max-width: 100%;
+        }
+
+        .preview-image,
+        .preview-video {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            border: 2px solid #d4af37;
+            margin-top: 0.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+
+        .menu-list {
+            margin-top: 2rem;
+        }
+
+        .menu-admin-item {
+            background: #333;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* About & Contact */
+        .about-content,
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(15, 15, 15, 0.6) 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            transition: all 0.4s;
+            min-width: 200px;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-item h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .chatbot {
+                width: 90%;
+                right: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Mama's Bona</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#admin">Admin</a></li>
+            <li>
+                <span class="cart-icon" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Mama's Bona Restaurant</h1>
+            <p>The Best Experience Forever</p>
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2>Our Exquisite Menu</h2>
+        <div class="menu-categories" id="menuCategories">
+            <!-- Menu categories akan diisi oleh JavaScript -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>Mama's Bona Restaurant adalah destinasi kuliner fine dining yang menawarkan pengalaman gastronomi tak
+                terlupakan. Dengan resep warisan keluarga yang telah disempurnakan selama bertahun-tahun, kami
+                menghadirkan hidangan berkelas dunia dengan sentuhan kehangatan rumah.</p>
+            <p>Setiap hidangan dibuat dengan bahan-bahan premium pilihan dan disajikan dengan presentasi yang memukau.
+                Kami berkomitmen untuk memberikan pengalaman bersantap yang tak hanya memuaskan selera, tetapi juga
+                jiwa.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-content">
+            <p>Kami dengan senang hati melayani reservasi Anda</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📍 Address</h3>
+                    <p>Jl. Fine Dining No. 123<br>Jakarta, Indonesia</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>+62 21 1234 5678</p>
+                </div>
+                <div class="contact-item">
+                    <h3>✉️ Email</h3>
+                    <p>info@mamasbona.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin">
+        <h2>Admin Panel</h2>
+        <div class="admin-login" id="adminLogin">
+            <label>Username</label>
+            <input type="text" id="adminUsername" placeholder="Username">
+            <label>Password</label>
+            <input type="password" id="adminPassword" placeholder="Password">
+            <button class="btn" onclick="adminLogin()">Login</button>
+        </div>
+
+        <div class="admin-panel" id="adminPanel">
+            <h3 style="color: #d4af37; margin-bottom: 2rem;">Kelola Menu</h3>
+
+            <label>Kategori Menu</label>
+            <select id="menuCategory"
+                style="width: 100%; padding: 1rem; margin-bottom: 1rem; background: #333; border: 1px solid #555; color: #f5f5f5;">
+                <option value="">Pilih Kategori</option>
+                <option value="Fine Dining">Fine Dining</option>
+                <option value="Minuman Non-Kopi">Minuman Non-Kopi</option>
+                <option value="Minuman Kopi">Minuman Kopi</option>
+                <option value="Hidangan Berat">Hidangan Berat</option>
+                <option value="Appetizer">Appetizer</option>
+                <option value="Dessert">Dessert</option>
+            </select>
+
+            <label>Nama Menu</label>
+            <input type="text" id="menuName" placeholder="Nama Menu">
+            <label>Deskripsi</label>
+            <textarea id="menuDesc" placeholder="Deskripsi" rows="3"></textarea>
+            <label>Harga (Rp)</label>
+            <input type="text" id="menuPrice" placeholder="Contoh: 20.000" oninput="formatPriceInput(this)">
+
+            <label>Gambar Menu (Max 200MB)</label>
+            <input type="file" id="menuImage" accept="image/*" onchange="previewImage()">
+            <div class="file-info">Format: JPG, PNG, GIF | Max: 200MB</div>
+            <div class="preview-container" id="imagePreview"></div>
+
+            <label>Video Menu (Max 200MB - Opsional)</label>
+            <input type="file" id="menuVideo" accept="video/*" onchange="previewVideo()">
+            <div class="file-info">Format: MP4, WebM, MOV | Max: 200MB</div>
+            <div class="preview-container" id="videoPreview"></div>
+
+            <button class="btn" onclick="addMenuItem()">Tambah Menu</button>
+            <button class="btn" onclick="adminLogout()" style="background: #dc3545; margin-left: 1rem;">Logout</button>
+
+            <div class="menu-list" id="adminMenuList"></div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="margin: 0;">Keranjang Belanja</h2>
+                <span class="close-modal" onclick="toggleCart()">&times;</span>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                Total: <span id="cartTotal">Rp 0</span>
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 1rem;" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" onclick="toggleChat()"></div>
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            <span>Mama's Bona Assistant</span>
+            <span style="cursor: pointer;" onclick="toggleChat()">✕</span>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot">Halo! Selamat datang di Mama's Bona Restaurant. Ada yang bisa saya bantu?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Ketik pesan..."
+                onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        let menuItems = [
+            // Fine Dining
+            { id: 1, category: "Fine Dining", name: "Wagyu Steak", desc: "Premium wagyu beef dengan saus truffle", price: 750000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EWagyu Steak%3C/text%3E%3C/svg%3E" },
+            { id: 2, category: "Fine Dining", name: "Lobster Thermidor", desc: "Lobster segar dengan saus krim istimewa", price: 650000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ELobster Thermidor%3C/text%3E%3C/svg%3E" },
+            { id: 3, category: "Fine Dining", name: "Foie Gras", desc: "Hati angsa premium dengan apple compote", price: 550000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EFoie Gras%3C/text%3E%3C/svg%3E" },
+            { id: 4, category: "Fine Dining", name: "Salmon Wellington", desc: "Salmon Norwegia dalam pastry renyah", price: 480000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ESalmon Wellington%3C/text%3E%3C/svg%3E" },
+            { id: 5, category: "Fine Dining", name: "Lamb Rack", desc: "Rack of lamb dengan herb crust", price: 520000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ELamb Rack%3C/text%3E%3C/svg%3E" },
+            { id: 6, category: "Fine Dining", name: "Truffle Risotto", desc: "Risotto creamy dengan truffle hitam", price: 380000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ETruffle Risotto%3C/text%3E%3C/svg%3E" },
+
+            // Minuman Non-Kopi
+            { id: 7, category: "Minuman Non-Kopi", name: "Teh Tarik", desc: "Teh tarik asli dengan susu segar", price: 25000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ETeh Tarik%3C/text%3E%3C/svg%3E" },
+            { id: 8, category: "Minuman Non-Kopi", name: "Es Teh Manis", desc: "Es teh manis segar", price: 15000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EEs Teh Manis%3C/text%3E%3C/svg%3E" },
+            { id: 9, category: "Minuman Non-Kopi", name: "Es Jeruk", desc: "Jus jeruk segar dengan es batu", price: 20000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EEs Jeruk%3C/text%3E%3C/svg%3E" },
+
+            // Hidangan Berat
+            { id: 10, category: "Hidangan Berat", name: "Nasi Goreng", desc: "Nasi goreng spesial dengan telur mata sapi", price: 35000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ENasi Goreng%3C/text%3E%3C/svg%3E" },
+            { id: 11, category: "Hidangan Berat", name: "Mie Goreng", desc: "Mie goreng sayuran dengan topping ayam", price: 32000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EMie Goreng%3C/text%3E%3C/svg%3E" },
+            { id: 12, category: "Hidangan Berat", name: "Soto Ayam", desc: "Soto ayam kuah bening dengan bumbu rempah", price: 30000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3ESoto Ayam%3C/text%3E%3C/svg%3E" },
+            { id: 13, category: "Hidangan Berat", name: "Mie Ayam", desc: "Mie ayam dengan pangsit dan bakso", price: 28000, image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23d4af37' text-anchor='middle' dy='.3em'%3EMie Ayam%3C/text%3E%3C/svg%3E" }
+        ];
+
+        let cart = [];
+
+        // Render Menu
+        function renderMenu() {
+            const container = document.getElementById('menuCategories');
+
+            // Group items by category
+            const categories = {};
+            menuItems.forEach(item => {
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+            });
+
+            // Render each category
+            container.innerHTML = Object.keys(categories).map(category => `
+                <div class="menu-category">
+                    <h3 class="category-title">${category}</h3>
+                    <div class="menu-grid">
+                        ${categories[category].map(item => `
+                            <div class="menu-item">
+                                ${item.video ? `
+                                    <video class="menu-item-video" controls>
+                                        <source src="${item.video}" type="video/mp4">
+                                    </video>
+                                ` : item.image ? `
+                                    <img src="${item.image}" alt="${item.name}" class="menu-item-image">
+                                ` : ''}
+                                <h3>${item.name}</h3>
+                                <p>${item.desc}</p>
+                                <div class="price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">Tambah ke Keranjang</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cart Functions
+        function addToCart(id) {
+            const item = menuItems.find(m => m.id === id);
+            const cartItem = cart.find(c => c.id === id);
+
+            if (cartItem) {
+                cartItem.qty++;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <strong>${item.name}</strong><br>
+                        <span style="color: #d4af37;">Rp ${item.price.toLocaleString('id-ID')}</span>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                        <span style="color: #d4af37; font-weight: bold;">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="removeFromCart(${item.id})">Hapus</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cartTotal').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function changeQty(id, change) {
+            const item = cart.find(c => c.id === id);
+            item.qty += change;
+            if (item.qty <= 0) {
+                removeFromCart(id);
+            } else {
+                updateCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(c => c.id !== id);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Keranjang masih kosong!');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            alert(`Terima kasih! Total pembayaran Anda: Rp ${total.toLocaleString('id-ID')}\n\nPesanan Anda sedang diproses.`);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Chatbot
+        function toggleChat() {
+            document.getElementById('chatbot').classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const messages = document.getElementById('chatMessages');
+            messages.innerHTML += `<div class="message user">${message}</div>`;
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getBotResponse(message.toLowerCase());
+                messages.innerHTML += `<div class="message bot">${response}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+        }
+
+        function getBotResponse(msg) {
+            if (msg.includes('menu') || msg.includes('makanan')) {
+                return 'Kami menyediakan berbagai hidangan fine dining seperti Wagyu Steak, Lobster Thermidor, Foie Gras, dan masih banyak lagi. Silakan cek menu kami!';
+            } else if (msg.includes('harga') || msg.includes('biaya')) {
+                return 'Harga menu kami berkisar dari Rp 380.000 hingga Rp 750.000. Anda dapat menambahkan item ke keranjang untuk melihat total biaya secara otomatis.';
+            } else if (msg.includes('reservasi') || msg.includes('booking')) {
+                return 'Untuk reservasi, silakan hubungi kami di +62 21 1234 5678 atau email ke info@mamasbona.com';
+            } else if (msg.includes('lokasi') || msg.includes('alamat')) {
+                return 'Kami berlokasi di Jl. Fine Dining No. 123, Jakarta, Indonesia. Lihat section Contact untuk detail lebih lanjut.';
+            } else if (msg.includes('jam') || msg.includes('buka')) {
+                return 'Kami buka setiap hari dari pukul 11:00 - 23:00. Reservasi sangat disarankan untuk pengalaman terbaik.';
+            } else {
+                return 'Terima kasih atas pertanyaan Anda. Apakah ada yang bisa saya bantu mengenai menu, harga, reservasi, atau lokasi kami?';
+            }
+        }
+
+        // Admin Functions
+        function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                renderAdminMenu();
+            } else {
+                alert('Username atau password salah!');
+            }
+        }
+
+        function adminLogout() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('adminPanel').classList.remove('active');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        // Preview Image
+        function previewImage() {
+            const file = document.getElementById('menuImage').files[0];
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                // Check file size (200MB = 200 * 1024 * 1024 bytes)
+                if (file.size > 200 * 1024 * 1024) {
+                    alert('Ukuran file terlalu besar! Maksimal 200MB');
+                    document.getElementById('menuImage').value = '';
+                    preview.innerHTML = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.innerHTML = `<img src="${e.target.result}" class="preview-image" alt="Preview">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Preview Video
+        function previewVideo() {
+            const file = document.getElementById('menuVideo').files[0];
+            const preview = document.getElementById('videoPreview');
+
+            if (file) {
+                // Check file size (200MB)
+                if (file.size > 200 * 1024 * 1024) {
+                    alert('Ukuran file terlalu besar! Maksimal 200MB');
+                    document.getElementById('menuVideo').value = '';
+                    preview.innerHTML = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.innerHTML = `<video src="${e.target.result}" class="preview-video" controls></video>`;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Format Price Input
+        function formatPriceInput(input) {
+            let value = input.value.replace(/\D/g, ''); // Hapus semua karakter non-digit
+            if (value) {
+                value = parseInt(value).toLocaleString('id-ID'); // Format dengan titik pemisah ribuan
+            }
+            input.value = value;
+        }
+
+        // Parse formatted price to number
+        function parsePriceInput(formattedPrice) {
+            return parseInt(formattedPrice.replace(/\./g, '')) || 0;
+        }
+
+        function addMenuItem() {
+            const category = document.getElementById('menuCategory').value;
+            const name = document.getElementById('menuName').value;
+            const desc = document.getElementById('menuDesc').value;
+            const priceFormatted = document.getElementById('menuPrice').value;
+            const price = parsePriceInput(priceFormatted);
+            const imageFile = document.getElementById('menuImage').files[0];
+            const videoFile = document.getElementById('menuVideo').files[0];
+
+            if (!category || !name || !desc || !price) {
+                alert('Mohon isi kategori, nama, deskripsi, dan harga!');
+                return;
+            }
+
+            const newId = Math.max(...menuItems.map(m => m.id), 0) + 1;
+            const newItem = { id: newId, category, name, desc, price };
+
+            // Process image
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    newItem.image = e.target.result;
+
+                    // Process video if exists
+                    if (videoFile) {
+                        const videoReader = new FileReader();
+                        videoReader.onload = function (ve) {
+                            newItem.video = ve.target.result;
+                            finalizeAddItem(newItem);
+                        }
+                        videoReader.readAsDataURL(videoFile);
+                    } else {
+                        finalizeAddItem(newItem);
+                    }
+                }
+                reader.readAsDataURL(imageFile);
+            } else if (videoFile) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    newItem.video = e.target.result;
+                    finalizeAddItem(newItem);
+                }
+                reader.readAsDataURL(videoFile);
+            } else {
+                finalizeAddItem(newItem);
+            }
+        }
+
+        function finalizeAddItem(newItem) {
+            menuItems.push(newItem);
+
+            document.getElementById('menuCategory').value = '';
+            document.getElementById('menuName').value = '';
+            document.getElementById('menuDesc').value = '';
+            document.getElementById('menuPrice').value = '';
+            document.getElementById('menuImage').value = '';
+            document.getElementById('menuVideo').value = '';
+            document.getElementById('imagePreview').innerHTML = '';
+            document.getElementById('videoPreview').innerHTML = '';
+
+            renderMenu();
+            renderAdminMenu();
+        }
+
+        function deleteMenuItem(id) {
+            if (confirm('Yakin ingin menghapus menu ini?')) {
+                menuItems = menuItems.filter(m => m.id !== id);
+                renderMenu();
+                renderAdminMenu();
+            }
+        }
+
+        function renderAdminMenu() {
+            const list = document.getElementById('adminMenuList');
+
+            // Group by category
+            const categories = {};
+            menuItems.forEach(item => {
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+            });
+
+            list.innerHTML = '<h3 style="color: #d4af37; margin-top: 2rem;">Daftar Menu</h3>' +
+                Object.keys(categories).map(category => `
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #d4af37; margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">${category}</h4>
+                        ${categories[category].map(item => `
+                            <div class="menu-admin-item">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    ${item.image ? `<img src="${item.image}" style="width: 80px; height: 60px; object-fit: cover; border: 1px solid #d4af37;">` : ''}
+                                    <div>
+                                        ${item.video ? `<span style="color: #d4af37;">📹 Video</span><br>` : ''}
+                                        <strong>${item.name}</strong><br>
+                                        <span style="color: #999;">${item.desc}</span><br>
+                                        <span style="color: #d4af37;">Rp ${item.price.toLocaleString('id-ID')}</span>
+                                    </div>
+                                </div>
+                                <button class="delete-btn" onclick="deleteMenuItem(${item.id})">Hapus</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+        }
+
+        // Initialize
+        renderMenu();
+
+        // Smooth scroll untuk semua link navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+
+</html>
