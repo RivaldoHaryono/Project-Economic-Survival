@@ -3865,7 +3865,8 @@
                         class="admin-lock-btn" onclick="lockAdmin()">🔒 Kunci</button></div>
                 <input type="text" id="adminMenuName" placeholder="Nama Menu *">
                 <input type="text" id="adminMenuDesc" placeholder="Deskripsi Menu">
-                <input type="text" id="adminMenuPrice" placeholder="Harga (contoh: 25.000) *" oninput="formatRupiahInput(this)" inputmode="numeric">
+                <input type="text" id="adminMenuPrice" placeholder="Harga (contoh: 25.000) *"
+                    oninput="formatRupiahInput(this)" inputmode="numeric">
                 <input type="text" id="adminMenuCategory" placeholder="Kategori (contoh: Makanan) *">
                 <div class="admin-section-label">📦 Stok Awal</div>
                 <div class="admin-stock-row"><input type="number" id="adminMenuStock" placeholder="Jumlah stok" min="0"
@@ -4508,7 +4509,36 @@
     <audio id="checkoutSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
     <audio id="addMenuSound" src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio>
 
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- FIREBASE SDK (CDN)                                -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
     <script>
+        // ════════════════════════════════════════════════════
+        // FIREBASE INITIALIZATION
+        // ════════════════════════════════════════════════════
+        var firebaseConfig = {
+            apiKey: "AIzaSyAjQCHeifoKSYr7UDrDiIEaP8Hyn31fJPw",
+            authDomain: "billsmart-id.firebaseapp.com",
+            projectId: "billsmart-id",
+            storageBucket: "billsmart-id.firebasestorage.app",
+            messagingSenderId: "324861430784",
+            appId: "1:324861430784:web:a8ad9297c5f607c8389ce5",
+            measurementId: "G-9EFB99YG6Z"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var analytics = firebase.analytics();
+        var db = firebase.firestore();
+        var auth = firebase.auth();
+
+        console.log('✅ Firebase connected to project: billsmart-id');
+
         // ════════════════════════════════════════════════════
         // DATA
         // ════════════════════════════════════════════════════
