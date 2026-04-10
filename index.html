@@ -3816,6 +3816,1547 @@
             color: var(--text-on-accent);
             border-color: var(--accent)
         }
+
+        /* ════════════════════════════════════════════════════
+   ADMIN PANEL REDESIGN — CSS
+════════════════════════════════════════════════════ */
+
+        /* ── ANIMATIONS ── */
+        @keyframes apSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
+        @keyframes apFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes apCountUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ── FULL-PAGE OVERLAY ── */
+        .admin-fullpage {
+            position: fixed;
+            inset: 0;
+            z-index: 3500;
+            background: var(--bg-body);
+            display: none;
+            flex-direction: row;
+        }
+
+        .admin-fullpage.active {
+            display: flex;
+            animation: apSlideIn .3s ease;
+        }
+
+        /* ═══════════════════════════
+   SIDEBAR
+═══════════════════════════ */
+        .ap-sidebar {
+            width: 210px;
+            background: var(--bg-panel);
+            border-right: 1.5px solid var(--border-card);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, .25);
+        }
+
+        .ap-brand {
+            padding: 1.1rem 1rem .85rem;
+            border-bottom: 1.5px solid var(--border-card);
+        }
+
+        .ap-logo {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: 1px;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        .ap-sub {
+            font-size: .62rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .ap-nav {
+            flex: 1;
+            padding: 8px;
+            overflow-y: auto
+        }
+
+        .ap-section {
+            font-size: .58rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 8px 4px;
+        }
+
+        .ap-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: .79rem;
+            transition: var(--transition);
+            margin-bottom: 2px;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            position: relative;
+        }
+
+        .ap-nav-item:hover {
+            background: rgba(var(--accent-rgb), .1);
+            color: var(--accent);
+        }
+
+        .ap-nav-item.active {
+            background: rgba(var(--accent-rgb), .13);
+            color: var(--accent);
+            font-weight: 700;
+            border-left: 2.5px solid var(--accent);
+        }
+
+        .ap-nav-item svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .ap-nav-badge {
+            margin-left: auto;
+            background: var(--accent);
+            color: var(--text-on-accent);
+            font-size: .58rem;
+            font-weight: 900;
+            padding: 1px 6px;
+            border-radius: 20px;
+        }
+
+        .ap-footer {
+            padding: 10px 8px;
+            border-top: 1.5px solid var(--border-card);
+        }
+
+        .ap-user-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 10px;
+            border-radius: var(--radius);
+            margin-bottom: 6px;
+        }
+
+        .ap-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(var(--accent-rgb), .15);
+            color: var(--accent);
+            font-size: .72rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(var(--accent-rgb), .3);
+            flex-shrink: 0;
+        }
+
+        .ap-uname {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--text-primary)
+        }
+
+        .ap-urole {
+            font-size: .62rem;
+            color: var(--text-muted)
+        }
+
+        .ap-lock-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            padding: 7px 10px;
+            border: 1px solid var(--border-card);
+            background: none;
+            border-radius: var(--radius);
+            color: var(--text-muted);
+            font-size: .75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ap-lock-btn:hover {
+            background: rgba(244, 67, 54, .1);
+            color: var(--color-out);
+            border-color: rgba(244, 67, 54, .3);
+        }
+
+        .ap-lock-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ═══════════════════════════
+   MAIN AREA
+═══════════════════════════ */
+        .ap-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .ap-topbar {
+            padding: 11px 20px;
+            background: var(--bg-panel);
+            border-bottom: 1.5px solid var(--border-card);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .ap-page-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: var(--text-primary)
+        }
+
+        .ap-page-sub {
+            font-size: .68rem;
+            color: var(--text-muted);
+            margin-top: 1px
+        }
+
+        .ap-topbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 7px
+        }
+
+        .ap-tb-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            background: none;
+            color: var(--text-secondary);
+            font-size: .73rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ap-tb-btn:hover {
+            background: rgba(var(--accent-rgb), .1);
+            color: var(--accent);
+            border-color: rgba(var(--accent-rgb), .3);
+        }
+
+        .ap-tb-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .ap-tb-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: var(--text-on-accent);
+            border: none;
+            font-weight: 700;
+        }
+
+        .ap-tb-btn.primary:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px)
+        }
+
+        .ap-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 18px
+        }
+
+        /* ═══════════════════════════
+   VIEWS
+═══════════════════════════ */
+        .ap-view {
+            display: none
+        }
+
+        .ap-view.active {
+            display: block;
+            animation: apFadeUp .25s
+        }
+
+        /* ═══════════════════════════
+   STAT CARDS
+═══════════════════════════ */
+        .ap-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .ap-stat {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            padding: 13px 14px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .ap-stat:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm)
+        }
+
+        .ap-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+
+        .ap-stat-label {
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .ap-stat-val {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--accent);
+            font-family: monospace;
+            letter-spacing: -.5px;
+            animation: apCountUp .5s ease;
+        }
+
+        .ap-stat-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: .62rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+
+        .ap-stat-change.up {
+            background: rgba(0, 200, 83, .12);
+            color: var(--color-ok)
+        }
+
+        .ap-stat-change.dn {
+            background: rgba(244, 67, 54, .12);
+            color: var(--color-out)
+        }
+
+        .ap-stat-change.nt {
+            background: rgba(255, 152, 0, .12);
+            color: var(--color-low)
+        }
+
+        .ap-stat-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-stat-icon svg {
+            width: 15px;
+            height: 15px;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ═══════════════════════════
+   PANELS
+═══════════════════════════ */
+        .ap-row2 {
+            display: grid;
+            grid-template-columns: 1fr 290px;
+            gap: 13px;
+            margin-bottom: 14px;
+        }
+
+        .ap-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+        }
+
+        .ap-panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .ap-panel-title {
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--text-primary)
+        }
+
+        .ap-panel-sub {
+            font-size: .62rem;
+            color: var(--text-muted);
+            margin-top: 1px
+        }
+
+        .ap-panel-link {
+            font-size: .68rem;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .ap-panel-link:hover {
+            text-decoration: underline
+        }
+
+        .ap-panel-body {
+            padding: 11px 14px
+        }
+
+        /* ═══════════════════════════
+   TABLE
+═══════════════════════════ */
+        .ap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .74rem
+        }
+
+        .ap-table th {
+            text-align: left;
+            font-size: .58rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border-card);
+            background: var(--bg-stats);
+        }
+
+        .ap-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-card);
+            color: var(--text-secondary);
+            vertical-align: middle;
+        }
+
+        .ap-table tr:last-child td {
+            border-bottom: none
+        }
+
+        .ap-table tr:hover td {
+            background: rgba(var(--accent-rgb), .04);
+            color: var(--text-primary)
+        }
+
+        .ap-table .tb-bold {
+            color: var(--text-primary);
+            font-weight: 700
+        }
+
+        /* ═══════════════════════════
+   STATUS PILLS
+═══════════════════════════ */
+        .ap-pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: .6rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: .3px;
+        }
+
+        .ap-pill.ok {
+            background: rgba(0, 200, 83, .12);
+            color: var(--color-ok)
+        }
+
+        .ap-pill.warn {
+            background: rgba(255, 152, 0, .12);
+            color: var(--color-low)
+        }
+
+        .ap-pill.danger {
+            background: rgba(244, 67, 54, .12);
+            color: var(--color-out)
+        }
+
+        .ap-pill.info {
+            background: rgba(59, 130, 246, .12);
+            color: #60a5fa
+        }
+
+        .ap-pill.muted {
+            background: var(--bg-stats);
+            color: var(--text-muted)
+        }
+
+        .ap-pill.accent {
+            background: rgba(var(--accent-rgb), .15);
+            color: var(--accent)
+        }
+
+        /* ═══════════════════════════
+   PROGRESS BARS
+═══════════════════════════ */
+        .ap-prog-item {
+            margin-bottom: 10px
+        }
+
+        .ap-prog-item:last-child {
+            margin-bottom: 0
+        }
+
+        .ap-prog-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: .71rem;
+            margin-bottom: 4px
+        }
+
+        .ap-prog-label span:first-child {
+            color: var(--text-secondary);
+            font-weight: 600
+        }
+
+        .ap-prog-label span:last-child {
+            color: var(--text-primary);
+            font-weight: 800
+        }
+
+        .ap-prog-track {
+            height: 5px;
+            background: var(--bg-stats);
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .ap-prog-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease
+        }
+
+        /* ═══════════════════════════
+   ACTIVITY FEED
+═══════════════════════════ */
+        .ap-act-item {
+            display: flex;
+            gap: 9px;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--border-card);
+            align-items: flex-start;
+        }
+
+        .ap-act-item:last-child {
+            border-bottom: none
+        }
+
+        .ap-act-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 4px
+        }
+
+        .ap-act-text {
+            font-size: .73rem;
+            color: var(--text-secondary);
+            flex: 1;
+            line-height: 1.4
+        }
+
+        .ap-act-text strong {
+            color: var(--text-primary)
+        }
+
+        .ap-act-time {
+            font-size: .62rem;
+            color: var(--text-muted);
+            flex-shrink: 0
+        }
+
+        /* ═══════════════════════════
+   SUB TABS
+═══════════════════════════ */
+        .ap-tab-bar {
+            display: flex;
+            gap: 2px;
+            padding: 3px;
+            background: var(--bg-stats);
+            border-radius: var(--radius);
+            margin-bottom: 11px;
+        }
+
+        .ap-tab {
+            flex: 1;
+            padding: 5px 8px;
+            border-radius: calc(var(--radius) - 2px);
+            border: none;
+            background: none;
+            font-size: .71rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+        }
+
+        .ap-tab.active {
+            background: var(--bg-panel);
+            color: var(--text-primary);
+            box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+        }
+
+        /* ═══════════════════════════
+   FORM ELEMENTS
+═══════════════════════════ */
+        .ap-form {
+            display: flex;
+            flex-direction: column;
+            gap: .55rem
+        }
+
+        .ap-form-label {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .15rem;
+            display: block;
+        }
+
+        .ap-form input,
+        .ap-form select,
+        .ap-form textarea {
+            width: 100%;
+            padding: .5rem .75rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-input);
+            color: var(--text-primary);
+            border-radius: var(--radius);
+            font-size: .81rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .ap-form input:focus,
+        .ap-form select:focus,
+        .ap-form textarea:focus {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ap-form-row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+
+        .ap-form-btn {
+            width: 100%;
+            padding: .68rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: var(--text-on-accent);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 800;
+            font-size: .83rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ap-form-btn:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px)
+        }
+
+        .ap-form-btn.sec {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .ap-form-btn.sec:hover {
+            background: rgba(var(--accent-rgb), .1)
+        }
+
+        /* Upload zone */
+        .ap-upload-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px dashed var(--border-input);
+            border-radius: var(--radius);
+            padding: .8rem .5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            gap: .2rem;
+            background: var(--bg-input);
+            min-height: 70px;
+        }
+
+        .ap-upload-zone:hover,
+        .ap-upload-zone.dragover {
+            border-color: var(--accent);
+            background: rgba(var(--accent-rgb), .05);
+        }
+
+        .ap-upload-zone .uicon {
+            font-size: 1.3rem
+        }
+
+        .ap-upload-zone .ulabel {
+            font-size: .71rem;
+            color: var(--text-secondary);
+            font-weight: 700
+        }
+
+        .ap-upload-zone .uhint {
+            font-size: .62rem;
+            color: var(--text-muted)
+        }
+
+        .ap-upload-progress {
+            height: 3px;
+            background: var(--bg-stats);
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+            margin-top: 3px
+        }
+
+        .ap-upload-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width .1s
+        }
+
+        .ap-media-preview {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--accent)
+        }
+
+        .ap-media-preview img,
+        .ap-media-preview video {
+            width: 100%;
+            max-height: 100px;
+            object-fit: cover;
+            display: block
+        }
+
+        .ap-remove-media {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(220, 53, 69, .9);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 2px 7px;
+            font-size: .62rem;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .ap-toggle-row {
+            display: flex;
+            gap: .4rem;
+            margin-bottom: .5rem
+        }
+
+        .ap-toggle-btn {
+            flex: 1;
+            padding: .4rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-input);
+            color: var(--text-muted);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: .71rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .ap-toggle-btn.active {
+            background: rgba(var(--accent-rgb), .12);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════
+   SETTINGS TOGGLES
+═══════════════════════════ */
+        .ap-setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .ap-setting-row:last-child {
+            border-bottom: none
+        }
+
+        .ap-setting-name {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text-primary)
+        }
+
+        .ap-setting-sub {
+            font-size: .63rem;
+            color: var(--text-muted);
+            margin-top: 1px
+        }
+
+        .ap-sw {
+            position: relative;
+            width: 38px;
+            height: 22px;
+            flex-shrink: 0
+        }
+
+        .ap-sw input {
+            opacity: 0;
+            width: 0;
+            height: 0
+        }
+
+        .ap-sw-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: var(--border-input);
+            border-radius: 22px;
+            transition: .3s;
+        }
+
+        .ap-sw-slider:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        .ap-sw input:checked+.ap-sw-slider {
+            background: var(--accent)
+        }
+
+        .ap-sw input:checked+.ap-sw-slider:before {
+            transform: translateX(16px)
+        }
+
+        /* ═══════════════════════════
+   ROW ACTION BUTTONS
+═══════════════════════════ */
+        .ap-row-btn {
+            padding: 3px 9px;
+            background: rgba(var(--accent-rgb), .1);
+            border: 1px solid rgba(var(--accent-rgb), .25);
+            color: var(--accent);
+            border-radius: var(--radius);
+            font-size: .63rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ap-row-btn:hover {
+            background: rgba(var(--accent-rgb), .2)
+        }
+
+        .ap-row-btn.d {
+            background: rgba(244, 67, 54, .1);
+            border-color: rgba(244, 67, 54, .25);
+            color: var(--color-out);
+        }
+
+        .ap-row-btn.d:hover {
+            background: rgba(244, 67, 54, .2)
+        }
+
+        /* ═══════════════════════════
+   BAR CHART
+═══════════════════════════ */
+        .ap-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: .3rem;
+            height: 100px
+        }
+
+        .ap-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .2rem;
+            flex: 1
+        }
+
+        .ap-bar-fill {
+            width: 100%;
+            background: linear-gradient(180deg, var(--accent), rgba(var(--accent-rgb), .3));
+            border-radius: 3px 3px 0 0;
+            min-height: 2px;
+            transition: height .6s cubic-bezier(.34, 1.56, .64, 1);
+            position: relative;
+        }
+
+        .ap-bar-fill:hover::after {
+            content: attr(data-val);
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--text-on-accent);
+            font-size: .58rem;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 3px;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .ap-bar-lbl {
+            font-size: .55rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-weight: 600
+        }
+
+        /* ═══════════════════════════
+   DONUT CHART
+═══════════════════════════ */
+        .ap-donut-wrap {
+            display: flex;
+            align-items: center;
+            gap: .8rem
+        }
+
+        .ap-donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: .32rem;
+            flex: 1
+        }
+
+        .ap-donut-leg-item {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .68rem;
+            color: var(--text-secondary)
+        }
+
+        .ap-donut-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        /* ═══════════════════════════
+   TOGGLE-ADMIN BUTTON (BARU)
+═══════════════════════════ */
+        .toggle-admin-btn-new {
+            margin-top: .5rem;
+            padding: .8rem;
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: var(--text-on-accent);
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius);
+        }
+
+        .toggle-admin-btn-new:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px)
+        }
+
+        /* ═══════════════════════════
+   RESPONSIVE
+═══════════════════════════ */
+        @media (max-width: 768px) {
+            .ap-stat-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .ap-row2 {
+                grid-template-columns: 1fr
+            }
+
+            .ap-sidebar {
+                width: 56px
+            }
+
+            .ap-logo,
+            .ap-sub,
+            .ap-uname,
+            .ap-urole,
+            .ap-nav-item span,
+            .ap-section,
+            .ap-lock-btn span {
+                display: none
+            }
+
+            .ap-nav-item {
+                justify-content: center;
+                padding: 10px
+            }
+
+            .ap-brand {
+                padding: 12px 8px
+            }
+
+            .ap-lock-btn {
+                justify-content: center;
+                padding: 7px
+            }
+        }
+
+        .auth-modal {
+            position: relative;
+            width: 400px;
+            max-width: calc(100vw - 2rem);
+            background: var(--bg-panel);
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, .2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .7);
+            overflow: hidden;
+            animation: authModalIn .35s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes authModalIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #authOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #authOverlay.hidden {
+            display: none;
+        }
+
+        .auth-header {
+            padding: 2rem 1.5rem 1.4rem;
+            background: linear-gradient(135deg, #1a1500 0%, #0d0d0d 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, .18);
+            text-align: center;
+        }
+
+        .auth-header-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, .12);
+            border: 1.5px solid rgba(212, 175, 55, .35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 22px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, .25);
+        }
+
+        .auth-header h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: .5px;
+            margin-bottom: 4px;
+        }
+
+        .auth-header p {
+            font-size: .75rem;
+            color: var(--text-muted);
+        }
+
+        .auth-header.success {
+            background: linear-gradient(135deg, #001a0a 0%, #0d0d0d 100%);
+            border-bottom-color: rgba(0, 200, 83, .25);
+        }
+
+        .auth-header.success .auth-header-icon {
+            background: rgba(0, 200, 83, .12);
+            border-color: rgba(0, 200, 83, .35);
+            box-shadow: 0 0 20px rgba(0, 200, 83, .2);
+        }
+
+        .auth-header.success h2 {
+            color: var(--color-ok);
+        }
+
+        .lockout-banner {
+            display: none;
+            background: rgba(244, 67, 54, .1);
+            border-bottom: 1px solid rgba(244, 67, 54, .25);
+            padding: 10px 16px;
+            text-align: center;
+            font-size: .78rem;
+            color: #f44336;
+            font-weight: 600;
+        }
+
+        .lockout-banner.show {
+            display: block;
+        }
+
+        .tab-bar {
+            display: flex;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 13px 8px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all .2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background: rgba(212, 175, 55, .04);
+        }
+
+        .auth-body {
+            padding: 20px 18px 18px;
+        }
+
+        .panel {
+            display: none;
+            animation: panelInAuth .22s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes panelInAuth {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pin-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .pin-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-card);
+            background: transparent;
+            transition: background .15s, border-color .15s, transform .1s;
+        }
+
+        .pin-dot.filled {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.15);
+            box-shadow: 0 0 8px rgba(212, 175, 55, .5);
+        }
+
+        .pin-dot.error {
+            border-color: #f44336;
+            background: #f44336;
+            animation: dotShake .35s ease;
+        }
+
+        @keyframes dotShake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-4px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(4px);
+            }
+        }
+
+        .numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .num-key {
+            padding: 15px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all .12s;
+        }
+
+        .num-key:hover {
+            background: #222;
+        }
+
+        .num-key:active {
+            transform: scale(.93);
+            background: rgba(212, 175, 55, .08);
+        }
+
+        .error-box {
+            display: none;
+            background: rgba(244, 67, 54, .1);
+            border: 1px solid rgba(244, 67, 54, .25);
+            border-radius: var(--radius);
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            font-size: .75rem;
+            color: #ff7c7c;
+            text-align: center;
+        }
+
+        .error-box.show {
+            display: block;
+        }
+
+        .field-label {
+            display: block;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .field-wrap {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .field-input {
+            width: 100%;
+            padding: 11px 40px 11px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            font-size: .9rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .field-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .field-input:focus {
+            border-color: rgba(212, 175, 55, .5);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, .08);
+        }
+
+        .eye-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: .9rem;
+            padding: 4px;
+            transition: color .2s;
+        }
+
+        .eye-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        .attempts-hint {
+            text-align: center;
+            font-size: .72rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .attempts-hint span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border: none;
+            border-radius: var(--radius);
+            font-size: .9rem;
+            font-weight: 700;
+            color: #1a1000;
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover {
+            opacity: .92;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            width: 100%;
+            padding: 11px;
+            background: transparent;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 8px;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(212, 175, 55, .35);
+            color: var(--accent);
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            font-size: .72rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: underline;
+            display: block;
+            margin: 0 auto;
+            padding: 4px;
+        }
+
+        .btn-link:hover {
+            color: var(--accent);
+        }
+
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(0, 200, 83, .12);
+            border: 1.5px solid rgba(0, 200, 83, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 14px;
+            animation: successPop .5s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes successPop {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-panel h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-ok);
+            margin-bottom: 6px;
+        }
+
+        .change-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .change-back {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            cursor: pointer;
+            font-size: .85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .change-back:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border-card);
+            margin: 14px 0;
+        }
+
+        .auth-footer {
+            padding: 0 18px 16px;
+        }
     </style>
 </head>
 
@@ -3829,6 +5370,7 @@
             <button class="header-btn stock-btn" onclick="openStockModal()">📦 Stok</button>
             <button class="header-btn" onclick="toggleThemePanel()">🎨 Tema</button>
             <button class="header-btn" onclick="startTutorial()">🎓 Panduan</button>
+            <button class="header-btn" onclick="openAdminAuth()">➕ Tambah Menu</button>
         </div>
     </div>
 
@@ -3859,68 +5401,732 @@
                     <button class="cart-action-btn" onclick="checkout()">🖨 Struk Saja</button>
                 </div>
             </div>
-            <button class="toggle-admin-btn" onclick="openAdminAuth()">⚙️ Tampilkan Admin Panel</button>
-            <div class="admin-panel" id="adminPanel">
-                <div class="admin-unlocked-bar" id="adminUnlockedBar"><span>🔓 Admin aktif</span><button
-                        class="admin-lock-btn" onclick="lockAdmin()">🔒 Kunci</button></div>
-                <input type="text" id="adminMenuName" placeholder="Nama Menu *">
-                <input type="text" id="adminMenuDesc" placeholder="Deskripsi Menu">
-                <input type="text" id="adminMenuPrice" placeholder="Harga (contoh: 25.000) *"
-                    oninput="formatRupiahInput(this)" inputmode="numeric">
-                <input type="text" id="adminMenuCategory" placeholder="Kategori (contoh: Makanan) *">
-                <div class="admin-section-label">📦 Stok Awal</div>
-                <div class="admin-stock-row"><input type="number" id="adminMenuStock" placeholder="Jumlah stok" min="0"
-                        value="50"><span>pcs</span></div>
-                <select id="adminMenuBadge">
-                    <option value="">Tanpa Badge</option>
-                    <option value="Promo">Promo</option>
-                    <option value="Terlaris">Terlaris</option>
-                </select>
-                <div class="admin-section-label">📸 Upload Media Menu</div>
-                <div class="media-type-toggle">
-                    <button class="media-type-btn active" id="btnTypePhoto" onclick="switchMediaType('photo')">🖼
-                        Foto</button>
-                    <button class="media-type-btn" id="btnTypeVideo" onclick="switchMediaType('video')">🎥
-                        Video</button>
+            <button class="toggle-admin-btn-new" onclick="openAdminAuth()">⚙️ Admin Panel</button>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════════
+             ADMIN FULL-PAGE PANEL (BAGIAN 2)
+        ════════════════════════════════════════════════════════════ -->
+        <div class="admin-fullpage" id="adminPanel">
+
+            <!-- ── SIDEBAR ── -->
+            <div class="ap-sidebar">
+                <div class="ap-brand">
+                    <div class="ap-logo">Billsmart.id</div>
+                    <div class="ap-sub">Admin Panel</div>
                 </div>
-                <div id="uploadPhotoArea">
-                    <label class="upload-drop-zone" id="photoDropZone" for="adminMenuPhoto"
-                        ondragover="onDragOver(event,'photoDropZone')" ondragleave="onDragLeave('photoDropZone')"
-                        ondrop="onDrop(event,'photo')">
-                        <div class="upload-icon">🖼</div>
-                        <div class="upload-label">Klik atau seret foto ke sini</div>
-                        <div class="upload-hint">JPG · PNG · WEBP — maks. 5 MB</div>
-                        <input type="file" id="adminMenuPhoto" accept="image/*" style="display:none"
-                            onchange="onPhotoChange(event)">
-                    </label>
-                    <div class="upload-progress" id="photoProgressWrap">
-                        <div class="upload-progress-fill" id="photoProgressFill" style="width:0%"></div>
+
+                <div class="ap-nav">
+                    <div class="ap-section">Utama</div>
+
+                    <button class="ap-nav-item active" id="apBtn-dashboard" onclick="apSetView('dashboard',this)">
+                        <svg viewBox="0 0 16 16">
+                            <rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1" />
+                            <rect x="9" y="1.5" width="5.5" height="5.5" rx="1" />
+                            <rect x="1.5" y="9" width="5.5" height="5.5" rx="1" />
+                            <rect x="9" y="9" width="5.5" height="5.5" rx="1" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </button>
+
+                    <button class="ap-nav-item" id="apBtn-tagihan" onclick="apSetView('tagihan',this)">
+                        <svg viewBox="0 0 16 16">
+                            <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1z" />
+                            <path d="M5 6h6M5 9h4" />
+                        </svg>
+                        <span>Tagihan</span>
+                        <span class="ap-nav-badge" id="apBadgeTagihan">0</span>
+                    </button>
+
+                    <button class="ap-nav-item" id="apBtn-transaksi" onclick="apSetView('transaksi',this)">
+                        <svg viewBox="0 0 16 16">
+                            <path d="M2 5h12M2 11h12M5 2l-3 3 3 3M11 8l3 3-3 3" />
+                        </svg>
+                        <span>Transaksi</span>
+                    </button>
+
+                    <button class="ap-nav-item" id="apBtn-menu" onclick="apSetView('menu',this)">
+                        <svg viewBox="0 0 16 16">
+                            <circle cx="8" cy="5" r="3" />
+                            <path d="M1 14c0-3.3 3.1-5 7-5s7 1.7 7 5" />
+                        </svg>
+                        <span>Kelola Menu</span>
+                    </button>
+
+                    <div class="ap-section" style="margin-top:8px">Laporan</div>
+
+                    <button class="ap-nav-item" id="apBtn-analitik" onclick="apSetView('analitik',this)">
+                        <svg viewBox="0 0 16 16">
+                            <path d="M14 12H2V4M2 12l3-3 3 2 3-5 3 3" />
+                        </svg>
+                        <span>Analitik</span>
+                    </button>
+
+                    <div class="ap-section" style="margin-top:8px">Sistem</div>
+
+                    <button class="ap-nav-item" id="apBtn-pengaturan" onclick="apSetView('pengaturan',this)">
+                        <svg viewBox="0 0 16 16">
+                            <circle cx="8" cy="8" r="2.5" />
+                            <path
+                                d="M8 1v2M8 13v2M1 8h2M13 8h2M3.1 3.1l1.4 1.4M11.5 11.5l1.4 1.4M3.1 12.9l1.4-1.4M11.5 4.5l1.4-1.4" />
+                        </svg>
+                        <span>Pengaturan</span>
+                    </button>
+                </div>
+
+                <div class="ap-footer">
+                    <div class="ap-user-row">
+                        <div class="ap-avatar">A</div>
+                        <div>
+                            <div class="ap-uname">Administrator</div>
+                            <div class="ap-urole">Super Admin</div>
+                        </div>
                     </div>
-                    <div class="media-preview" id="photoPreview" style="display:none"><img id="photoPreviewImg" src=""
-                            alt="preview"><button class="remove-media-btn" onclick="removeMedia('photo')">✕
-                            Hapus</button></div>
+                    <button class="ap-lock-btn" onclick="apLockPanel()">
+                        <svg viewBox="0 0 16 16">
+                            <rect x="3" y="7.5" width="10" height="7" rx="1" />
+                            <path d="M5.5 7.5V5a2.5 2.5 0 015 0v2.5" />
+                        </svg>
+                        <span>Kunci & Keluar</span>
+                    </button>
                 </div>
-                <div id="uploadVideoArea" style="display:none">
-                    <label class="upload-drop-zone" id="videoDropZone" for="adminMenuVideo"
-                        ondragover="onDragOver(event,'videoDropZone')" ondragleave="onDragLeave('videoDropZone')"
-                        ondrop="onDrop(event,'video')">
-                        <div class="upload-icon">🎥</div>
-                        <div class="upload-label">Klik atau seret video ke sini</div>
-                        <div class="upload-hint">MP4 · WEBM — maks. 20 MB</div>
-                        <input type="file" id="adminMenuVideo" accept="video/*" style="display:none"
-                            onchange="onVideoChange(event)">
-                    </label>
-                    <div class="upload-progress" id="videoProgressWrap">
-                        <div class="upload-progress-fill" id="videoProgressFill" style="width:0%"></div>
+            </div>
+
+            <!-- ── MAIN ── -->
+            <div class="ap-main">
+
+                <!-- Topbar -->
+                <div class="ap-topbar">
+                    <div>
+                        <div class="ap-page-title" id="apPageTitle">Dashboard</div>
+                        <div class="ap-page-sub" id="apPageSub">Ringkasan aktivitas POS hari ini</div>
                     </div>
-                    <div class="media-preview" id="videoPreview" style="display:none"><video id="videoPreviewEl" muted
-                            autoplay loop playsinline></video><button class="remove-media-btn"
-                            onclick="removeMedia('video')">✕ Hapus</button></div>
+                    <div class="ap-topbar-right">
+                        <button class="ap-tb-btn" onclick="apRefresh()">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M14 8A6 6 0 112.5 5" />
+                                <path d="M2 2v3h3" />
+                            </svg>
+                            Refresh
+                        </button>
+                        <button class="ap-tb-btn" onclick="openDashboard()">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M14 12H2V4M2 12l3-3 3 2 3-5 3 3" />
+                            </svg>
+                            Laporan
+                        </button>
+                        <button class="ap-tb-btn" onclick="openHistory()">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1z" />
+                                <path d="M5 6h6M5 9h4" />
+                            </svg>
+                            Riwayat
+                        </button>
+                        <button class="ap-tb-btn" onclick="openStockModal()">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M2 6l6-4 6 4v8H2zM6 14V9h4v5" />
+                            </svg>
+                            Stok
+                        </button>
+                    </div>
                 </div>
-                <button class="admin-btn-add" onclick="addMenuAdmin()">➕ Tambah Menu</button>
-                <button class="admin-btn-clear" onclick="clearAdminInputs()">🗑 Bersihkan Form</button>
+
+                <!-- Content -->
+                <div class="ap-content">
+
+                    <!-- VIEW: DASHBOARD -->
+                    <div class="ap-view active" id="apView-dashboard">
+                        <div class="ap-stat-grid">
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Pendapatan Hari Ini</div>
+                                <div class="ap-stat-val" id="apKpiRevToday">Rp 0</div>
+                                <div class="ap-stat-change up" id="apKpiRevChg">↑ memuat...</div>
+                                <div class="ap-stat-icon" style="background:rgba(59,130,246,.12)">
+                                    <svg viewBox="0 0 16 16" stroke="#60a5fa" fill="none">
+                                        <path d="M8 2v12M5 10l3 3 3-3M4 6l4-4 4 4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Total Transaksi</div>
+                                <div class="ap-stat-val" id="apKpiTxToday">0</div>
+                                <div class="ap-stat-change nt" id="apKpiTxChg">— memuat...</div>
+                                <div class="ap-stat-icon" style="background:rgba(var(--accent-rgb),.12)">
+                                    <svg viewBox="0 0 16 16" stroke="var(--accent)" fill="none">
+                                        <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1z" />
+                                        <path d="M5 6h6M5 9h4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Item Terjual</div>
+                                <div class="ap-stat-val" id="apKpiItems">0</div>
+                                <div class="ap-stat-change up">↑ hari ini</div>
+                                <div class="ap-stat-icon" style="background:rgba(16,185,129,.12)">
+                                    <svg viewBox="0 0 16 16" stroke="#34d399" fill="none">
+                                        <path d="M2 6l6-4 6 4v8H2zM6 14V9h4v5" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Stok Hampir Habis</div>
+                                <div class="ap-stat-val" id="apKpiLowStock">0</div>
+                                <div class="ap-stat-change dn" id="apKpiLowChg">item perlu restock</div>
+                                <div class="ap-stat-icon" style="background:rgba(244,67,54,.12)">
+                                    <svg viewBox="0 0 16 16" stroke="var(--color-out)" fill="none">
+                                        <path d="M8 3L1.5 14h13L8 3z" />
+                                        <path d="M8 8v3M8 12.5v.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ap-row2">
+                            <div class="ap-panel">
+                                <div class="ap-panel-head">
+                                    <div>
+                                        <div class="ap-panel-title">Transaksi Terbaru</div>
+                                        <div class="ap-panel-sub" id="apTxSubtitle">— memuat —</div>
+                                    </div>
+                                    <button class="ap-panel-link" onclick="openHistory()">Lihat semua →</button>
+                                </div>
+                                <div class="ap-panel-body" style="padding:0 14px 8px">
+                                    <table class="ap-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Pelanggan</th>
+                                                <th>Metode</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="apRecentTxBody">
+                                            <tr>
+                                                <td colspan="5"
+                                                    style="text-align:center;color:var(--text-muted);padding:1rem">
+                                                    Memuat data...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;flex-direction:column;gap:13px">
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div>
+                                            <div class="ap-panel-title">Realisasi Hari Ini</div>
+                                            <div class="ap-panel-sub">vs kemarin</div>
+                                        </div>
+                                        <span style="font-size:1.1rem;font-weight:900;color:var(--color-ok)"
+                                            id="apRealisasiPct">—%</span>
+                                    </div>
+                                    <div class="ap-panel-body">
+                                        <div class="ap-prog-item">
+                                            <div class="ap-prog-label"><span>Pendapatan</span><span id="apPrgRev">Rp
+                                                    0</span></div>
+                                            <div class="ap-prog-track">
+                                                <div class="ap-prog-fill" id="apPrgRevFill"
+                                                    style="width:0%;background:var(--accent)"></div>
+                                            </div>
+                                        </div>
+                                        <div class="ap-prog-item">
+                                            <div class="ap-prog-label"><span>Transaksi</span><span id="apPrgTx">0
+                                                    tx</span></div>
+                                            <div class="ap-prog-track">
+                                                <div class="ap-prog-fill" id="apPrgTxFill"
+                                                    style="width:0%;background:#60a5fa"></div>
+                                            </div>
+                                        </div>
+                                        <div class="ap-prog-item" style="margin-bottom:0">
+                                            <div class="ap-prog-label"><span>Item Terjual</span><span id="apPrgItems">0
+                                                    pcs</span></div>
+                                            <div class="ap-prog-track">
+                                                <div class="ap-prog-fill" id="apPrgItemsFill"
+                                                    style="width:0%;background:#34d399"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ap-panel" style="flex:1">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Aktivitas Terbaru</div>
+                                    </div>
+                                    <div class="ap-panel-body" style="padding:6px 14px 10px">
+                                        <div id="apActivityFeed">
+                                            <div class="ap-act-item">
+                                                <div class="ap-act-dot" style="background:var(--text-muted)"></div>
+                                                <div class="ap-act-text">Belum ada aktivitas hari ini.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW: TRANSAKSI -->
+                    <div class="ap-view" id="apView-transaksi">
+                        <div class="ap-stat-grid" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Total Pemasukan</div>
+                                <div class="ap-stat-val" id="apTxRevTotal">Rp 0</div>
+                                <div class="ap-stat-change up">semua transaksi</div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Jumlah Transaksi</div>
+                                <div class="ap-stat-val" id="apTxCount">0</div>
+                                <div class="ap-stat-change nt">total tersimpan</div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Rata-rata Order</div>
+                                <div class="ap-stat-val" id="apTxAvg">Rp 0</div>
+                                <div class="ap-stat-change nt">per transaksi</div>
+                            </div>
+                        </div>
+                        <div class="ap-panel">
+                            <div class="ap-panel-head">
+                                <div class="ap-panel-title">Riwayat Transaksi</div>
+                                <div style="display:flex;gap:6px">
+                                    <button class="ap-panel-link" onclick="openHistory()">Buka detail lengkap →</button>
+                                </div>
+                            </div>
+                            <div style="padding:0 14px 8px">
+                                <table class="ap-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Pelanggan</th>
+                                            <th>Metode</th>
+                                            <th>Item</th>
+                                            <th>Total</th>
+                                            <th>Waktu</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="apTxTableBody">
+                                        <tr>
+                                            <td colspan="7"
+                                                style="text-align:center;color:var(--text-muted);padding:1rem">Memuat
+                                                transaksi...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW: KELOLA MENU -->
+                    <div class="ap-view" id="apView-menu">
+                        <div style="display:grid;grid-template-columns:1fr 320px;gap:14px">
+                            <div class="ap-panel">
+                                <div class="ap-panel-head">
+                                    <div class="ap-panel-title">Daftar Menu Aktif</div>
+                                    <span style="font-size:.68rem;color:var(--text-muted)" id="apMenuCount">0
+                                        item</span>
+                                </div>
+                                <div style="padding:0 14px 8px">
+                                    <table class="ap-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Kategori</th>
+                                                <th>Harga</th>
+                                                <th>Stok</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="apMenuTableBody">
+                                            <tr>
+                                                <td colspan="6"
+                                                    style="text-align:center;color:var(--text-muted);padding:1rem">
+                                                    Memuat menu...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="ap-panel">
+                                <div class="ap-panel-head">
+                                    <div class="ap-panel-title">➕ Tambah Menu Baru</div>
+                                </div>
+                                <div class="ap-panel-body">
+                                    <div class="ap-form">
+                                        <div>
+                                            <label class="ap-form-label">Nama Menu *</label>
+                                            <input type="text" id="adminMenuName" placeholder="Nama menu">
+                                        </div>
+                                        <div>
+                                            <label class="ap-form-label">Deskripsi</label>
+                                            <input type="text" id="adminMenuDesc" placeholder="Deskripsi singkat">
+                                        </div>
+                                        <div class="ap-form-row2">
+                                            <div>
+                                                <label class="ap-form-label">Harga *</label>
+                                                <input type="text" id="adminMenuPrice" placeholder="25.000"
+                                                    oninput="formatRupiahInput(this)" inputmode="numeric">
+                                            </div>
+                                            <div>
+                                                <label class="ap-form-label">Kategori *</label>
+                                                <input type="text" id="adminMenuCategory" placeholder="Makanan">
+                                            </div>
+                                        </div>
+                                        <div class="ap-form-row2">
+                                            <div>
+                                                <label class="ap-form-label">Stok Awal</label>
+                                                <input type="number" id="adminMenuStock" value="50" min="0">
+                                            </div>
+                                            <div>
+                                                <label class="ap-form-label">Badge</label>
+                                                <select id="adminMenuBadge">
+                                                    <option value="">Tanpa Badge</option>
+                                                    <option value="Promo">Promo</option>
+                                                    <option value="Terlaris">Terlaris</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="ap-form-label">Media</label>
+                                            <div class="ap-toggle-row">
+                                                <button class="ap-toggle-btn active" id="apBtnTypePhoto"
+                                                    onclick="apSwitchMediaType('photo')">🖼 Foto</button>
+                                                <button class="ap-toggle-btn" id="apBtnTypeVideo"
+                                                    onclick="apSwitchMediaType('video')">🎥 Video</button>
+                                            </div>
+
+                                            <div id="apUploadPhotoArea">
+                                                <label class="ap-upload-zone" id="apPhotoDropZone" for="adminMenuPhoto"
+                                                    ondragover="apDragOver(event,'apPhotoDropZone')"
+                                                    ondragleave="apDragLeave('apPhotoDropZone')"
+                                                    ondrop="apOnDrop(event,'photo')">
+                                                    <div class="uicon">🖼</div>
+                                                    <div class="ulabel">Klik atau seret foto</div>
+                                                    <div class="uhint">JPG · PNG · WEBP — maks 5 MB</div>
+                                                    <input type="file" id="adminMenuPhoto" accept="image/*"
+                                                        style="display:none" onchange="apOnPhotoChange(event)">
+                                                </label>
+                                                <div class="ap-upload-progress" id="apPhotoProgressWrap">
+                                                    <div class="ap-upload-progress-fill" id="apPhotoProgressFill"
+                                                        style="width:0%"></div>
+                                                </div>
+                                                <div class="ap-media-preview" id="apPhotoPreview" style="display:none">
+                                                    <img id="apPhotoPreviewImg" src="" alt="preview">
+                                                    <button class="ap-remove-media" onclick="apRemoveMedia('photo')">✕
+                                                        Hapus</button>
+                                                </div>
+                                            </div>
+
+                                            <div id="apUploadVideoArea" style="display:none">
+                                                <label class="ap-upload-zone" id="apVideoDropZone" for="adminMenuVideo"
+                                                    ondragover="apDragOver(event,'apVideoDropZone')"
+                                                    ondragleave="apDragLeave('apVideoDropZone')"
+                                                    ondrop="apOnDrop(event,'video')">
+                                                    <div class="uicon">🎥</div>
+                                                    <div class="ulabel">Klik atau seret video</div>
+                                                    <div class="uhint">MP4 · WEBM — maks 20 MB</div>
+                                                    <input type="file" id="adminMenuVideo" accept="video/*"
+                                                        style="display:none" onchange="apOnVideoChange(event)">
+                                                </label>
+                                                <div class="ap-upload-progress" id="apVideoProgressWrap">
+                                                    <div class="ap-upload-progress-fill" id="apVideoProgressFill"
+                                                        style="width:0%"></div>
+                                                </div>
+                                                <div class="ap-media-preview" id="apVideoPreview" style="display:none">
+                                                    <video id="apVideoPreviewEl" muted autoplay loop
+                                                        playsinline></video>
+                                                    <button class="ap-remove-media" onclick="apRemoveMedia('video')">✕
+                                                        Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button class="ap-form-btn" onclick="addMenuAdmin()">➕ Tambah Menu</button>
+                                        <button class="ap-form-btn sec" onclick="clearAdminInputs()">🗑 Bersihkan
+                                            Form</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW: ANALITIK -->
+                    <div class="ap-view" id="apView-analitik">
+                        <div class="ap-stat-grid">
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Tingkat Pembayaran</div>
+                                <div class="ap-stat-val" id="apAnaPayRate">—%</div>
+                                <div class="ap-stat-change up">dari total transaksi</div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Menu Terlaris</div>
+                                <div class="ap-stat-val" style="font-size:.9rem;letter-spacing:0" id="apAnaBest">—</div>
+                                <div class="ap-stat-change accent">paling banyak terjual</div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Pendapatan 7 Hari</div>
+                                <div class="ap-stat-val" id="apAnaWeekRev">Rp 0</div>
+                                <div class="ap-stat-change up">↑ trending</div>
+                            </div>
+                            <div class="ap-stat">
+                                <div class="ap-stat-label">Metode Favorit</div>
+                                <div class="ap-stat-val" style="font-size:.9rem;letter-spacing:0" id="apAnaTopMethod">—
+                                </div>
+                                <div class="ap-stat-change nt">paling sering digunakan</div>
+                            </div>
+                        </div>
+
+                        <div class="ap-row2">
+                            <div class="ap-panel">
+                                <div class="ap-panel-head">
+                                    <div class="ap-panel-title">Pendapatan 7 Hari Terakhir</div>
+                                    <button class="ap-panel-link" onclick="openDashboard()">Laporan lengkap →</button>
+                                </div>
+                                <div class="ap-panel-body">
+                                    <div class="ap-bar-chart" id="apBarChart7">
+                                        <div
+                                            style="width:100%;text-align:center;color:var(--text-muted);font-size:.78rem;padding:2rem 0">
+                                            Memuat grafik...</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;flex-direction:column;gap:13px">
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Metode Pembayaran</div>
+                                    </div>
+                                    <div class="ap-panel-body">
+                                        <div class="ap-donut-wrap">
+                                            <div style="position:relative;width:88px;height:88px;flex-shrink:0">
+                                                <svg id="apDonutSvg" style="transform:rotate(-90deg)"
+                                                    viewBox="0 0 100 100" width="88" height="88"></svg>
+                                            </div>
+                                            <div class="ap-donut-legend" id="apDonutLegend">
+                                                <div style="font-size:.68rem;color:var(--text-muted)">Memuat...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ap-panel" style="flex:1">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Produk Terlaris</div>
+                                    </div>
+                                    <div class="ap-panel-body" style="padding:6px 14px 10px">
+                                        <div id="apTopProducts">
+                                            <div style="font-size:.75rem;color:var(--text-muted)">Memuat...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW: PENGATURAN -->
+                    <div class="ap-view" id="apView-pengaturan">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                            <div style="display:flex;flex-direction:column;gap:14px">
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Profil Admin</div>
+                                        <button class="ap-panel-link">Edit</button>
+                                    </div>
+                                    <div class="ap-panel-body">
+                                        <div
+                                            style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--border-card);margin-bottom:12px">
+                                            <div
+                                                style="width:48px;height:48px;border-radius:50%;background:rgba(var(--accent-rgb),.15);color:var(--accent);font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(var(--accent-rgb),.3)">
+                                                A</div>
+                                            <div>
+                                                <div style="font-size:.88rem;font-weight:700;color:var(--text-primary)">
+                                                    Administrator</div>
+                                                <div style="font-size:.68rem;color:var(--text-muted)">admin@billsmart.id
+                                                </div>
+                                                <span class="ap-pill ok"
+                                                    style="margin-top:4px;display:inline-flex">Super Admin</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.75rem">
+                                            <div>
+                                                <div style="color:var(--text-muted);margin-bottom:2px">Role</div>
+                                                <div style="color:var(--text-primary);font-weight:700">Super Admin</div>
+                                            </div>
+                                            <div>
+                                                <div style="color:var(--text-muted);margin-bottom:2px">Status</div><span
+                                                    class="ap-pill ok">Aktif</span>
+                                            </div>
+                                            <div>
+                                                <div style="color:var(--text-muted);margin-bottom:2px">Default PIN</div>
+                                                <div style="color:var(--text-primary);font-weight:700">123456</div>
+                                            </div>
+                                            <div>
+                                                <div style="color:var(--text-muted);margin-bottom:2px">Default PW</div>
+                                                <div style="color:var(--text-primary);font-weight:700">admin123</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Keamanan Akun</div>
+                                    </div>
+                                    <div class="ap-panel-body" style="display:flex;flex-direction:column;gap:8px">
+                                        <button class="ap-form-btn" style="font-size:.78rem"
+                                            onclick="apLockPanel();document.getElementById('authOverlay').classList.remove('hidden');switchAuthTab('pin',document.getElementById('tabBtnPIN'))">🔢
+                                            Ubah PIN Admin</button>
+                                        <button class="ap-form-btn" style="font-size:.78rem"
+                                            onclick="apLockPanel();document.getElementById('authOverlay').classList.remove('hidden');switchAuthTab('password',document.getElementById('tabBtnPassword'))">🔑
+                                            Ubah Password</button>
+                                        <button class="ap-form-btn" style="font-size:.78rem"
+                                            onclick="apLockPanel();document.getElementById('authOverlay').classList.remove('hidden');switchAuthTab('touch',document.getElementById('tabBtnTouch'))">👆
+                                            Kelola Touch ID</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;flex-direction:column;gap:14px">
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Preferensi Sistem</div>
+                                    </div>
+                                    <div class="ap-panel-body">
+                                        <div class="ap-setting-row">
+                                            <div>
+                                                <div class="ap-setting-name">Notifikasi Stok Rendah</div>
+                                                <div class="ap-setting-sub">Alert saat stok ≤ 10 pcs</div>
+                                            </div>
+                                            <label class="ap-sw"><input type="checkbox" checked><span
+                                                    class="ap-sw-slider"></span></label>
+                                        </div>
+                                        <div class="ap-setting-row">
+                                            <div>
+                                                <div class="ap-setting-name">Auto-lock Admin</div>
+                                                <div class="ap-setting-sub">Kunci panel setelah 5 menit idle</div>
+                                            </div>
+                                            <label class="ap-sw"><input type="checkbox" checked><span
+                                                    class="ap-sw-slider"></span></label>
+                                        </div>
+                                        <div class="ap-setting-row">
+                                            <div>
+                                                <div class="ap-setting-name">Suara Efek</div>
+                                                <div class="ap-setting-sub">Beep saat item ditambah ke keranjang</div>
+                                            </div>
+                                            <label class="ap-sw"><input type="checkbox" checked><span
+                                                    class="ap-sw-slider"></span></label>
+                                        </div>
+                                        <div class="ap-setting-row">
+                                            <div>
+                                                <div class="ap-setting-name">Animasi Cart</div>
+                                                <div class="ap-setting-sub">Animasi fly saat tambah item</div>
+                                            </div>
+                                            <label class="ap-sw"><input type="checkbox" checked><span
+                                                    class="ap-sw-slider"></span></label>
+                                        </div>
+                                        <div class="ap-setting-row" style="border-bottom:none">
+                                            <div>
+                                                <div class="ap-setting-name">Tutorial saat buka</div>
+                                                <div class="ap-setting-sub">Tampilkan panduan pertama kali</div>
+                                            </div>
+                                            <label class="ap-sw"><input type="checkbox"><span
+                                                    class="ap-sw-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ap-panel">
+                                    <div class="ap-panel-head">
+                                        <div class="ap-panel-title">Info Aplikasi</div>
+                                    </div>
+                                    <div class="ap-panel-body"
+                                        style="font-size:.75rem;display:flex;flex-direction:column;gap:8px;color:var(--text-secondary)">
+                                        <div style="display:flex;justify-content:space-between"><span>Versi</span><span
+                                                style="font-weight:700;color:var(--text-primary)">v2.4.1</span></div>
+                                        <div style="display:flex;justify-content:space-between"><span>Total
+                                                Menu</span><span style="font-weight:700;color:var(--text-primary)"
+                                                id="apInfoMenuCount">0 item</span></div>
+                                        <div style="display:flex;justify-content:space-between"><span>Total Transaksi
+                                                Tersimpan</span><span style="font-weight:700;color:var(--text-primary)"
+                                                id="apInfoTxCount">0</span></div>
+                                        <div style="display:flex;justify-content:space-between"><span>Status
+                                                Database</span><span class="ap-pill ok">Terhubung</span></div>
+                                        <div style="display:flex;justify-content:space-between"><span>Mode</span><span
+                                                class="ap-pill accent">POS Aktif</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="admin-panel" id="adminPanel" style="display:none">
+            <div class="admin-unlocked-bar" id="adminUnlockedBar"><span>🔓 Admin aktif</span><button
+                    class="admin-lock-btn" onclick="lockAdmin()">🔒 Kunci</button></div>
+            <input type="text" id="adminMenuName" placeholder="Nama Menu *">
+            <input type="text" id="adminMenuDesc" placeholder="Deskripsi Menu">
+            <input type="text" id="adminMenuPrice" placeholder="Harga (contoh: 25.000) *"
+                oninput="formatRupiahInput(this)" inputmode="numeric">
+            <input type="text" id="adminMenuCategory" placeholder="Kategori (contoh: Makanan) *">
+            <div class="admin-section-label">📦 Stok Awal</div>
+            <div class="admin-stock-row"><input type="number" id="adminMenuStock" placeholder="Jumlah stok" min="0"
+                    value="50"><span>pcs</span></div>
+            <select id="adminMenuBadge">
+                <option value="">Tanpa Badge</option>
+                <option value="Promo">Promo</option>
+                <option value="Terlaris">Terlaris</option>
+            </select>
+            <div class="admin-section-label">📸 Upload Media Menu</div>
+            <div class="media-type-toggle">
+                <button class="media-type-btn active" id="btnTypePhoto" onclick="switchMediaType('photo')">🖼
+                    Foto</button>
+                <button class="media-type-btn" id="btnTypeVideo" onclick="switchMediaType('video')">🎥
+                    Video</button>
+            </div>
+            <div id="uploadPhotoArea">
+                <label class="upload-drop-zone" id="photoDropZone" for="adminMenuPhoto"
+                    ondragover="onDragOver(event,'photoDropZone')" ondragleave="onDragLeave('photoDropZone')"
+                    ondrop="onDrop(event,'photo')">
+                    <div class="upload-icon">🖼</div>
+                    <div class="upload-label">Klik atau seret foto ke sini</div>
+                    <div class="upload-hint">JPG · PNG · WEBP — maks. 5 MB</div>
+                    <input type="file" id="adminMenuPhoto" accept="image/*" style="display:none"
+                        onchange="onPhotoChange(event)">
+                </label>
+                <div class="upload-progress" id="photoProgressWrap">
+                    <div class="upload-progress-fill" id="photoProgressFill" style="width:0%"></div>
+                </div>
+                <div class="media-preview" id="photoPreview" style="display:none"><img id="photoPreviewImg" src=""
+                        alt="preview"><button class="remove-media-btn" onclick="removeMedia('photo')">✕
+                        Hapus</button></div>
+            </div>
+            <div id="uploadVideoArea" style="display:none">
+                <label class="upload-drop-zone" id="videoDropZone" for="adminMenuVideo"
+                    ondragover="onDragOver(event,'videoDropZone')" ondragleave="onDragLeave('videoDropZone')"
+                    ondrop="onDrop(event,'video')">
+                    <div class="upload-icon">🎥</div>
+                    <div class="upload-label">Klik atau seret video ke sini</div>
+                    <div class="upload-hint">MP4 · WEBM — maks. 20 MB</div>
+                    <input type="file" id="adminMenuVideo" accept="video/*" style="display:none"
+                        onchange="onVideoChange(event)">
+                </label>
+                <div class="upload-progress" id="videoProgressWrap">
+                    <div class="upload-progress-fill" id="videoProgressFill" style="width:0%"></div>
+                </div>
+                <div class="media-preview" id="videoPreview" style="display:none"><video id="videoPreviewEl" muted
+                        autoplay loop playsinline></video><button class="remove-media-btn"
+                        onclick="removeMedia('video')">✕ Hapus</button></div>
+            </div>
+            <button class="admin-btn-add" onclick="addMenuAdmin()">➕ Tambah Menu</button>
+            <button class="admin-btn-clear" onclick="clearAdminInputs()">🗑 Bersihkan Form</button>
+        </div>
+    </div>
     </div>
 
     <!-- ══════════════════════════════════════════
@@ -4195,110 +6401,6 @@
         </div>
     </div>
 
-    <!-- AUTH MODALS -->
-    <div class="auth-overlay hidden" id="authOverlay">
-        <div class="auth-box">
-            <div class="auth-header"><span class="auth-lock-icon" id="authLockIcon">🔐</span>
-                <h2>Admin Authentication</h2>
-                <p id="authHeaderSub">Verifikasi identitas untuk masuk</p>
-            </div>
-            <div class="auth-body">
-                <div class="auth-method-tabs">
-                    <button class="auth-method-tab active" id="tabBtnPIN" onclick="switchAuthTab('pin',this)">🔢
-                        PIN</button>
-                    <button class="auth-method-tab" id="tabBtnPassword" onclick="switchAuthTab('password',this)">🔑
-                        Password</button>
-                    <button class="auth-method-tab" id="tabBtnTouch" onclick="switchAuthTab('touch',this)">👆 Touch
-                        ID</button>
-                </div>
-                <div class="auth-lockout" id="authLockout">
-                    <div class="auth-lockout-icon">🚫</div>
-                    <h3>Akses Terkunci</h3>
-                    <p>Terlalu banyak percobaan gagal. Coba lagi dalam:</p>
-                    <div class="auth-lockout-timer" id="lockoutTimer">30s</div>
-                </div>
-                <div class="auth-tab-content active" id="authTabPIN">
-                    <div class="pin-display">
-                        <div class="pin-dot" id="pd0"></div>
-                        <div class="pin-dot" id="pd1"></div>
-                        <div class="pin-dot" id="pd2"></div>
-                        <div class="pin-dot" id="pd3"></div>
-                        <div class="pin-dot" id="pd4"></div>
-                        <div class="pin-dot" id="pd5"></div>
-                    </div>
-                    <div class="auth-error" id="pinError">PIN salah! Sisa percobaan: <span id="pinAttemptsLeft">3</span>
-                    </div>
-                    <div class="pin-numpad">
-                        <button class="pin-key" onclick="pinInput('1')">1</button><button class="pin-key"
-                            onclick="pinInput('2')">2</button><button class="pin-key" onclick="pinInput('3')">3</button>
-                        <button class="pin-key" onclick="pinInput('4')">4</button><button class="pin-key"
-                            onclick="pinInput('5')">5</button><button class="pin-key" onclick="pinInput('6')">6</button>
-                        <button class="pin-key" onclick="pinInput('7')">7</button><button class="pin-key"
-                            onclick="pinInput('8')">8</button><button class="pin-key" onclick="pinInput('9')">9</button>
-                        <button class="pin-key empty"></button><button class="pin-key"
-                            onclick="pinInput('0')">0</button><button class="pin-key del"
-                            onclick="pinDelete()">⌫</button>
-                    </div>
-                    <div class="auth-change-pw"><button onclick="showChangePIN()">Ubah PIN</button></div>
-                </div>
-                <div class="auth-tab-content" id="authTabPassword">
-                    <div class="auth-input-wrap"><input type="password" id="adminPasswordInput"
-                            placeholder="Masukkan password admin"
-                            onkeydown="if(event.key==='Enter')checkPassword()"><button class="auth-toggle-eye"
-                            id="toggleEyeBtn" onclick="togglePasswordVisibility()">👁</button></div>
-                    <div class="auth-error" id="passwordError">Password salah! Sisa percobaan: <span
-                            id="pwAttemptsLeft">3</span></div>
-                    <div class="auth-attempts">Percobaan tersisa: <span id="pwAttemptsDisplay">3</span></div>
-                    <button class="auth-btn" id="authSubmitBtn" onclick="checkPassword()">🔓 Masuk</button>
-                    <div class="auth-change-pw"><button onclick="showChangePassword()">Ubah Password</button></div>
-                </div>
-                <div class="auth-tab-content" id="authTabTouch">
-                    <div class="touchid-area">
-                        <div class="touchid-btn" id="touchIDBtn" onclick="simulateTouchID()">👆</div>
-                        <div class="touchid-label">Tempelkan jari Anda<br>atau klik untuk simulasi</div>
-                        <div class="touchid-status" id="touchIDStatus"></div>
-                    </div>
-                    <div class="auth-error" id="touchError">Touch ID gagal! Coba metode lain.</div>
-                </div>
-                <button class="auth-btn-secondary" onclick="closeAuthModal()">Batal</button>
-            </div>
-        </div>
-    </div>
-    <div class="auth-overlay hidden" id="changePINOverlay">
-        <div class="auth-box">
-            <div class="auth-header"><span class="auth-lock-icon">🔢</span>
-                <h2>Ubah PIN</h2>
-                <p>Masukkan PIN baru (6 digit)</p>
-            </div>
-            <div class="auth-body">
-                <div class="auth-input-wrap"><input type="password" id="newPIN1" placeholder="PIN baru (6 digit)"
-                        maxlength="6" inputmode="numeric"></div>
-                <div class="auth-input-wrap"><input type="password" id="newPIN2" placeholder="Konfirmasi PIN baru"
-                        maxlength="6" inputmode="numeric"></div>
-                <div class="auth-error" id="changePINError">PIN tidak cocok atau kurang dari 6 digit!</div><button
-                    class="auth-btn" onclick="savePIN()">💾 Simpan PIN</button><button class="auth-btn-secondary"
-                    onclick="document.getElementById('changePINOverlay').classList.add('hidden')">Batal</button>
-            </div>
-        </div>
-    </div>
-    <div class="auth-overlay hidden" id="changePasswordOverlay">
-        <div class="auth-box">
-            <div class="auth-header"><span class="auth-lock-icon">🔑</span>
-                <h2>Ubah Password</h2>
-                <p>Buat password admin baru</p>
-            </div>
-            <div class="auth-body">
-                <div class="auth-input-wrap"><input type="password" id="newPW1"
-                        placeholder="Password baru (min. 4 karakter)"></div>
-                <div class="auth-input-wrap"><input type="password" id="newPW2" placeholder="Konfirmasi password baru">
-                </div>
-                <div class="auth-error" id="changePWError">Password tidak cocok atau terlalu pendek!</div><button
-                    class="auth-btn" onclick="savePassword()">💾 Simpan Password</button><button
-                    class="auth-btn-secondary"
-                    onclick="document.getElementById('changePasswordOverlay').classList.add('hidden')">Batal</button>
-            </div>
-        </div>
-    </div>
 
     <!-- TUTORIAL -->
     <div class="tut-overlay hidden" id="tutOverlay">
@@ -4509,36 +6611,7 @@
     <audio id="checkoutSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
     <audio id="addMenuSound" src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio>
 
-    <!-- ══════════════════════════════════════════════════ -->
-    <!-- FIREBASE SDK (CDN)                                -->
-    <!-- ══════════════════════════════════════════════════ -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
     <script>
-        // ════════════════════════════════════════════════════
-        // FIREBASE INITIALIZATION
-        // ════════════════════════════════════════════════════
-        var firebaseConfig = {
-            apiKey: "AIzaSyAjQCHeifoKSYr7UDrDiIEaP8Hyn31fJPw",
-            authDomain: "billsmart-id.firebaseapp.com",
-            projectId: "billsmart-id",
-            storageBucket: "billsmart-id.firebasestorage.app",
-            messagingSenderId: "324861430784",
-            appId: "1:324861430784:web:a8ad9297c5f607c8389ce5",
-            measurementId: "G-9EFB99YG6Z"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var analytics = firebase.analytics();
-        var db = firebase.firestore();
-        var auth = firebase.auth();
-
-        console.log('✅ Firebase connected to project: billsmart-id');
-
         // ════════════════════════════════════════════════════
         // DATA
         // ════════════════════════════════════════════════════
@@ -4937,72 +7010,6 @@
         }
 
         // ════════════════════════════════════════════════════
-        // ADMIN AUTH
-        // ════════════════════════════════════════════════════
-        var ADMIN_PIN = '123456', ADMIN_PASSWORD = 'admin123', adminUnlocked = false, authAttempts = 3, lockoutActive = false, currentPINInput = '', currentAuthTab = 'pin';
-        function openAdminAuth() { if (adminUnlocked) { document.getElementById('adminPanel').classList.toggle('active'); return; } resetAuthState(); document.getElementById('authOverlay').classList.remove('hidden'); }
-        function closeAuthModal() { document.getElementById('authOverlay').classList.add('hidden'); resetAuthState(); }
-        function resetAuthState() {
-            authAttempts = 3; currentPINInput = ''; lockoutActive = false; updatePINDots();
-            ['pinError', 'passwordError', 'touchError'].forEach(function (id) { var el = document.getElementById(id); if (el) { el.classList.remove('show'); el.style.display = 'none'; } });
-            document.getElementById('adminPasswordInput').value = ''; document.getElementById('pwAttemptsDisplay').textContent = '3'; document.getElementById('pwAttemptsLeft').textContent = '3'; document.getElementById('pinAttemptsLeft').textContent = '3';
-            document.getElementById('authLockout').classList.remove('show');
-            var tb = document.getElementById('touchIDBtn'); tb.classList.remove('scanning', 'success', 'fail'); document.getElementById('touchIDStatus').textContent = ''; document.getElementById('touchIDStatus').className = 'touchid-status';
-            switchAuthTab(currentAuthTab, document.getElementById('tabBtn' + currentAuthTab.charAt(0).toUpperCase() + currentAuthTab.slice(1)));
-        }
-        function switchAuthTab(tab, btn) {
-            currentAuthTab = tab;
-            ['PIN', 'Password', 'Touch'].forEach(function (t) { var el = document.getElementById('authTab' + t); var b = document.getElementById('tabBtn' + t); if (el) el.classList.remove('active'); if (b) b.classList.remove('active'); });
-            var at = document.getElementById('authTab' + tab.charAt(0).toUpperCase() + tab.slice(1)); if (at) at.classList.add('active'); if (btn) btn.classList.add('active');
-        }
-        function updatePINDots() { for (var i = 0; i < 6; i++) { var dot = document.getElementById('pd' + i); if (dot) dot.classList.toggle('filled', i < currentPINInput.length); } }
-        function pinInput(digit) { if (lockoutActive || currentPINInput.length >= 6) return; currentPINInput += digit; updatePINDots(); if (currentPINInput.length === 6) setTimeout(checkPIN, 200); }
-        function pinDelete() { if (currentPINInput.length > 0) { currentPINInput = currentPINInput.slice(0, -1); updatePINDots(); } }
-        function checkPIN() {
-            if (currentPINInput === ADMIN_PIN) { onAuthSuccess(); } else {
-                authAttempts--; currentPINInput = ''; updatePINDots();
-                var errEl = document.getElementById('pinError'); document.getElementById('pinAttemptsLeft').textContent = authAttempts;
-                errEl.style.display = 'block'; errEl.classList.add('show'); setTimeout(function () { errEl.classList.remove('show'); }, 400);
-                if (authAttempts <= 0) triggerLockout();
-            }
-        }
-        function checkPassword() {
-            if (lockoutActive) return;
-            var input = document.getElementById('adminPasswordInput').value;
-            if (input === ADMIN_PASSWORD) { onAuthSuccess(); } else {
-                authAttempts--; document.getElementById('pwAttemptsLeft').textContent = authAttempts; document.getElementById('pwAttemptsDisplay').textContent = authAttempts;
-                var errEl = document.getElementById('passwordError'); errEl.style.display = 'block'; errEl.classList.add('show'); setTimeout(function () { errEl.classList.remove('show'); }, 400);
-                document.getElementById('adminPasswordInput').value = ''; if (authAttempts <= 0) triggerLockout();
-            }
-        }
-        function togglePasswordVisibility() { var inp = document.getElementById('adminPasswordInput'), btn = document.getElementById('toggleEyeBtn'); if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; } else { inp.type = 'password'; btn.textContent = '👁'; } }
-        function simulateTouchID() {
-            if (lockoutActive) return;
-            var btn = document.getElementById('touchIDBtn'), status = document.getElementById('touchIDStatus');
-            var ripple = document.createElement('div'); ripple.className = 'touchid-ripple'; btn.appendChild(ripple); setTimeout(function () { if (btn.contains(ripple)) btn.removeChild(ripple); }, 1000);
-            btn.classList.add('scanning'); status.textContent = 'Memindai...'; status.className = 'touchid-status scanning';
-            var success = Math.random() > 0.15;
-            setTimeout(function () { finalizeTouchID(success, btn, status); }, 1200);
-        }
-        function finalizeTouchID(success, btn, status) {
-            btn.classList.remove('scanning');
-            if (success) { btn.classList.add('success'); status.textContent = '✅ Terverifikasi!'; status.className = 'touchid-status success'; setTimeout(function () { onAuthSuccess(); }, 700); }
-            else { btn.classList.add('fail'); status.textContent = '❌ Tidak dikenali'; status.className = 'touchid-status fail'; document.getElementById('touchError').style.display = 'block'; document.getElementById('touchError').classList.add('show'); authAttempts--; setTimeout(function () { btn.classList.remove('fail'); status.textContent = ''; document.getElementById('touchError').classList.remove('show'); if (authAttempts <= 0) triggerLockout(); }, 1500); }
-        }
-        function onAuthSuccess() { adminUnlocked = true; document.getElementById('authOverlay').classList.add('hidden'); document.getElementById('adminPanel').classList.add('active'); }
-        function lockAdmin() { adminUnlocked = false; document.getElementById('adminPanel').classList.remove('active'); }
-        function triggerLockout() {
-            lockoutActive = true; document.getElementById('authLockout').classList.add('show');
-            ['authTabPIN', 'authTabPassword', 'authTabTouch'].forEach(function (id) { var el = document.getElementById(id); if (el) el.classList.remove('active'); });
-            var secs = 30; document.getElementById('lockoutTimer').textContent = secs + 's';
-            var iv = setInterval(function () { secs--; document.getElementById('lockoutTimer').textContent = secs + 's'; if (secs <= 0) { clearInterval(iv); lockoutActive = false; authAttempts = 3; document.getElementById('authLockout').classList.remove('show'); switchAuthTab('pin', document.getElementById('tabBtnPIN')); document.getElementById('pinAttemptsLeft').textContent = '3'; document.getElementById('pwAttemptsLeft').textContent = '3'; document.getElementById('pwAttemptsDisplay').textContent = '3'; } }, 1000);
-        }
-        function showChangePIN() { document.getElementById('authOverlay').classList.add('hidden'); document.getElementById('changePINOverlay').classList.remove('hidden'); }
-        function savePIN() { var p1 = document.getElementById('newPIN1').value, p2 = document.getElementById('newPIN2').value, errEl = document.getElementById('changePINError'); if (p1.length < 4 || p1 !== p2 || !/^\d+$/.test(p1)) { errEl.style.display = 'block'; errEl.classList.add('show'); return; } ADMIN_PIN = p1; errEl.style.display = 'none'; document.getElementById('newPIN1').value = ''; document.getElementById('newPIN2').value = ''; document.getElementById('changePINOverlay').classList.add('hidden'); alert('✅ PIN berhasil diubah!'); }
-        function showChangePassword() { document.getElementById('authOverlay').classList.add('hidden'); document.getElementById('changePasswordOverlay').classList.remove('hidden'); }
-        function savePassword() { var p1 = document.getElementById('newPW1').value, p2 = document.getElementById('newPW2').value, errEl = document.getElementById('changePWError'); if (p1.length < 4 || p1 !== p2) { errEl.style.display = 'block'; errEl.classList.add('show'); return; } ADMIN_PASSWORD = p1; errEl.style.display = 'none'; document.getElementById('newPW1').value = ''; document.getElementById('newPW2').value = ''; document.getElementById('changePasswordOverlay').classList.add('hidden'); alert('✅ Password berhasil diubah!'); }
-
-        // ════════════════════════════════════════════════════
         // ADMIN PANEL — MEDIA
         // ════════════════════════════════════════════════════
         var currentMediaType = 'photo', uploadedPhotoData = null, uploadedVideoData = null;
@@ -5065,6 +7072,36 @@
         function generateVA(bank) { var prefix = { bca: '88808', bni: '99089', bri: '26215', mandiri: '70012' }; var p = prefix[bank] || '99999'; var r = Math.floor(Math.random() * 99999999).toString().padStart(8, '0'); return (p + r).replace(/(.{4})/g, '$1 ').trim(); }
         function copyVA(va) { try { navigator.clipboard.writeText(va.replace(/\s/g, '')); showToast('✅ Nomor VA disalin!', 'ok'); } catch (e) { showToast('Gagal menyalin', 'low'); } }
         function fmtCard(el) { var v = el.value.replace(/\D/g, '').substring(0, 16); el.value = v.replace(/(.{4})/g, '$1 ').trim(); }
+        // Auth Modal Functions
+        var ADMIN_PIN = '123456';
+        var ADMIN_PASSWORD = 'admin123';
+        var authPinValue = '';
+        var authAttempts = 3;
+        var authLocked = false;
+        var authActiveTab = 'pin';
+        var authPrevTab = 'pin';
+        var authLockInterval = null;
+        var adminUnlocked = false;
+
+        function openAdminAuth() { document.getElementById('authOverlay').classList.remove('hidden'); authActiveTab = 'pin'; switchAuthTab('pin'); }
+        function closeAuthModal() { document.getElementById('authOverlay').classList.add('hidden'); resetAuthUI(); authPinValue = ''; authAttempts = 3; authLocked = false; adminUnlocked = false; }
+        function switchAuthTab(tab) { if (authLocked) return; document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); }); document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); }); authActiveTab = tab; if (tab === 'pin') { document.getElementById('panelPin').classList.add('active'); document.querySelector('[onclick="switchAuthTab(\'pin\')"]').classList.add('active'); } else { document.getElementById('panelPassword').classList.add('active'); document.querySelector('[onclick="switchAuthTab(\'password\')"]').classList.add('active'); } clearAuthErrors(); }
+        function authPinKey(k) { if (authLocked) return; if (k === 'clear') { authPinValue = ''; } else if (k === 'delete') { authPinValue = authPinValue.slice(0, -1); } else { authPinValue += k; } updateAuthDots(false); if (authPinValue.length === 6) { authCheckPIN(); } }
+        function updateAuthDots(isError) { for (var i = 0; i < 6; i++) { var dot = document.getElementById('dot' + i); dot.classList.remove('filled', 'error'); if (i < authPinValue.length) { dot.classList.add(isError ? 'error' : 'filled'); } } }
+        function authCheckPIN() { clearAuthErrors(); if (authPinValue === ADMIN_PIN) { onAuthSuccess(); } else { authPinValue = ''; updateAuthDots(true); document.getElementById('pinError').classList.add('show'); document.getElementById('pinError').textContent = 'PIN tidak sesuai'; } }
+        function authCheckPassword() { var val = document.getElementById('passwordInput').value; clearAuthErrors(); if (val === ADMIN_PASSWORD) { onAuthSuccess(); } else { authAttempts--; document.getElementById('passwordInput').value = ''; if (authAttempts > 0) { document.getElementById('passwordError').classList.add('show'); document.getElementById('passwordError').textContent = 'Password salah'; document.getElementById('attemptsLeft').textContent = authAttempts; } else { triggerAuthLockout(); } } }
+        function authToggleEye() { var inp = document.getElementById('passwordInput'); var btn = document.querySelector('.eye-btn'); if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '👁️‍🗨️'; } else { inp.type = 'password'; btn.textContent = '👁️'; } }
+        function triggerAuthLockout() { authLocked = true; authAttempts = 3; var lockoutTime = 30; document.getElementById('lockoutBanner').classList.add('show'); document.getElementById('tabBar').style.opacity = '0.5'; document.getElementById('tabBar').style.pointerEvents = 'none'; document.getElementById('authBody').style.opacity = '0.5'; document.getElementById('authBody').style.pointerEvents = 'none'; var countdown = function () { document.getElementById('lockoutSeconds').textContent = lockoutTime; if (lockoutTime > 0) { lockoutTime--; authLockInterval = setTimeout(countdown, 1000); } else { authLocked = false; document.getElementById('lockoutBanner').classList.remove('show'); document.getElementById('tabBar').style.opacity = '1'; document.getElementById('tabBar').style.pointerEvents = 'auto'; document.getElementById('authBody').style.opacity = '1'; document.getElementById('authBody').style.pointerEvents = 'auto'; document.getElementById('passwordInput').value = ''; document.getElementById('attemptsLeft').textContent = '3'; } }; countdown(); }
+        function onAuthSuccess() { adminUnlocked = true; document.getElementById('authHeader').classList.add('success'); document.getElementById('authHeaderIcon').textContent = '✓'; document.getElementById('authHeaderTitle').textContent = 'Akses Diberikan'; document.getElementById('authHeaderSubtitle').textContent = 'Selamat datang di Panel Admin'; document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); }); document.getElementById('panelSuccess').classList.add('active'); document.getElementById('tabBar').style.display = 'none'; document.getElementById('authFooter').style.display = 'none'; }
+        function authGoToDashboard() { closeAuthModal(); console.log('Admin access granted'); }
+        function showChangePIN() { authPrevTab = 'pin'; document.getElementById('panelPin').classList.remove('active'); document.getElementById('panelChangePIN').classList.add('active'); document.getElementById('tabBar').style.display = 'none'; document.getElementById('authFooter').style.display = 'none'; }
+        function authSavePIN() { clearAuthErrors(); var newPin = document.getElementById('newPinInput').value; var confirmPin = document.getElementById('confirmPinInput').value; if (newPin.length < 4 || newPin.length > 8) { document.getElementById('changePinError').classList.add('show'); document.getElementById('changePinError').textContent = 'PIN harus 4-8 digit'; return; } if (newPin !== confirmPin) { document.getElementById('changePinError').classList.add('show'); document.getElementById('changePinError').textContent = 'PIN tidak cocok'; return; } ADMIN_PIN = newPin; document.getElementById('newPinInput').value = ''; document.getElementById('confirmPinInput').value = ''; cancelAuthChange(); showToast('✅ PIN berhasil diubah', 'ok'); }
+        function showChangePassword() { authPrevTab = 'password'; document.getElementById('panelPassword').classList.remove('active'); document.getElementById('panelChangePassword').classList.add('active'); document.getElementById('tabBar').style.display = 'none'; document.getElementById('authFooter').style.display = 'none'; }
+        function authSavePassword() { clearAuthErrors(); var newPass = document.getElementById('newPasswordInput').value; var confirmPass = document.getElementById('confirmPasswordInput').value; if (newPass.length < 4) { document.getElementById('changePasswordError').classList.add('show'); document.getElementById('changePasswordError').textContent = 'Password minimal 4 karakter'; return; } if (newPass !== confirmPass) { document.getElementById('changePasswordError').classList.add('show'); document.getElementById('changePasswordError').textContent = 'Password tidak cocok'; return; } ADMIN_PASSWORD = newPass; document.getElementById('newPasswordInput').value = ''; document.getElementById('confirmPasswordInput').value = ''; cancelAuthChange(); showToast('✅ Password berhasil diubah', 'ok'); }
+        function cancelAuthChange() { document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); }); if (authPrevTab === 'pin') { document.getElementById('panelPin').classList.add('active'); } else { document.getElementById('panelPassword').classList.add('active'); } document.getElementById('tabBar').style.display = 'flex'; document.getElementById('authFooter').style.display = 'block'; clearAuthErrors(); }
+        function clearAuthErrors() { document.querySelectorAll('.error-box').forEach(function (e) { e.classList.remove('show'); }); }
+        function resetAuthUI() { document.getElementById('authHeader').classList.remove('success'); document.getElementById('authHeaderIcon').textContent = '🔐'; document.getElementById('authHeaderTitle').textContent = 'Admin Authentication'; document.getElementById('authHeaderSubtitle').textContent = 'Masukkan PIN atau Password Anda'; }
+
         function buildPayStep3() {
             if (payState.timerInterval) clearInterval(payState.timerInterval);
             var secs = 600;
@@ -5209,12 +7246,410 @@
             el.value = parseInt(raw, 10).toLocaleString('id-ID');
         }
 
+        // ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+        // ADMIN PANEL REDESIGN — JAVASCRIPT (BAGIAN 3)
+        // ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+        var apCurrentView = 'dashboard';
+        var apCurrentMediaType = 'photo';
+        var apUploadedPhoto = null;
+        var apUploadedVideo = null;
+
+        var apPageMeta = {
+            dashboard: { title: 'Dashboard', sub: 'Ringkasan aktivitas POS hari ini' },
+            tagihan: { title: 'Tagihan', sub: 'Kelola semua tagihan aktif' },
+            transaksi: { title: 'Transaksi', sub: 'Riwayat pembayaran & pemasukan' },
+            menu: { title: 'Kelola Menu', sub: 'Tambah, edit, dan hapus menu POS' },
+            analitik: { title: 'Analitik', sub: 'Laporan performa penjualan' },
+            pengaturan: { title: 'Pengaturan', sub: 'Konfigurasi sistem & keamanan' }
+        };
+
+        var _origOnAuthSuccess = (typeof onAuthSuccess === 'function') ? onAuthSuccess : null;
+        function onAuthSuccess() {
+            adminUnlocked = true;
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('active');
+            apRefreshAllData();
+        }
+
+        function lockAdmin() {
+            adminUnlocked = false;
+            document.getElementById('adminPanel').classList.remove('active');
+        }
+
+        function apLockPanel() {
+            if (confirm('Kunci admin panel?')) lockAdmin();
+        }
+
+        function apSetView(name, btn) {
+            document.querySelectorAll('.ap-view').forEach(function (v) { v.classList.remove('active'); });
+            document.querySelectorAll('.ap-nav-item').forEach(function (b) { b.classList.remove('active'); });
+            var v = document.getElementById('apView-' + name);
+            if (v) v.classList.add('active');
+            if (btn) btn.classList.add('active');
+            var meta = apPageMeta[name] || { title: name, sub: '' };
+            document.getElementById('apPageTitle').textContent = meta.title;
+            document.getElementById('apPageSub').textContent = meta.sub;
+            apCurrentView = name;
+            if (name === 'dashboard') apRenderDashboard();
+            if (name === 'transaksi') apRenderTransaksi();
+            if (name === 'menu') apRenderMenuTable();
+            if (name === 'analitik') apRenderAnalitik();
+            if (name === 'pengaturan') apRenderPengaturan();
+        }
+
+        function apSubTab(btn, id) {
+            btn.parentElement.querySelectorAll('.ap-tab').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        }
+
+        function apRefresh() { apRefreshAllData(); showToast('🔄 Data diperbarui!', 'ok'); }
+
+        function apRefreshAllData() {
+            apRenderDashboard();
+            apUpdateNavBadges();
+            if (apCurrentView !== 'dashboard') apSetView(apCurrentView, document.getElementById('apBtn-' + apCurrentView));
+        }
+
+        function apUpdateNavBadges() {
+            var lowStock = (typeof menuItems !== 'undefined')
+                ? menuItems.filter(function (m) { return m.stock !== undefined && m.stock <= 10 }).length
+                : 0;
+            var badge = document.getElementById('apBadgeTagihan');
+            if (badge) badge.textContent = lowStock;
+        }
+
+        function apFmtShort(n) {
+            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'jt';
+            if (n >= 1000) return (n / 1000).toFixed(0) + 'rb';
+            return n.toLocaleString('id-ID');
+        }
+
+        function apGetToday() {
+            var d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime();
+        }
+        function apGetYesterday() {
+            var d = new Date(); d.setDate(d.getDate() - 1); d.setHours(0, 0, 0, 0); return d.getTime();
+        }
+
+        function apRenderDashboard() {
+            if (typeof transactionHistory === 'undefined') return;
+            var todayStart = apGetToday();
+            var yestStart = apGetYesterday();
+            var txToday = transactionHistory.filter(function (t) { return t.timestamp >= todayStart; });
+            var txYest = transactionHistory.filter(function (t) { return t.timestamp >= yestStart && t.timestamp < todayStart; });
+            var revToday = txToday.reduce(function (a, t) { return a + t.total; }, 0);
+            var revYest = txYest.reduce(function (a, t) { return a + t.total; }, 0);
+            var itemsToday = txToday.reduce(function (a, t) { return a + t.items.reduce(function (b, i) { return b + i.qty; }, 0); }, 0);
+            var lowStockCount = (typeof menuItems !== 'undefined') ? menuItems.filter(function (m) { return m.stock !== undefined && m.stock <= 10; }).length : 0;
+            _apSetText('apKpiRevToday', 'Rp ' + apFmtShort(revToday));
+            _apSetText('apKpiTxToday', txToday.length);
+            _apSetText('apKpiItems', itemsToday);
+            _apSetText('apKpiLowStock', lowStockCount);
+            var revChgPct = revYest > 0 ? Math.round((revToday - revYest) / revYest * 100) : 0;
+            var revChgEl = document.getElementById('apKpiRevChg');
+            if (revChgEl) { revChgEl.textContent = (revChgPct >= 0 ? '↑ +' : '↓ ') + revChgPct + '% vs kemarin'; revChgEl.className = 'ap-stat-change ' + (revChgPct >= 0 ? 'up' : 'dn'); }
+            var txChgEl = document.getElementById('apKpiTxChg');
+            if (txChgEl) txChgEl.textContent = txToday.length + ' transaksi hari ini';
+            var lowChgEl = document.getElementById('apKpiLowChg');
+            if (lowChgEl) { lowChgEl.textContent = lowStockCount > 0 ? lowStockCount + ' item perlu restock' : 'Semua stok aman'; lowChgEl.className = 'ap-stat-change ' + (lowStockCount > 0 ? 'dn' : 'up'); }
+            var maxRev = Math.max(revToday, revYest, 1);
+            var maxTx = Math.max(txToday.length, txYest.length, 1);
+            _apSetBar('apPrgRevFill', Math.round(revToday / maxRev * 100));
+            _apSetBar('apPrgTxFill', Math.round(txToday.length / maxTx * 100));
+            _apSetBar('apPrgItemsFill', Math.min(Math.round(itemsToday / 20 * 100), 100));
+            _apSetText('apPrgRev', 'Rp ' + apFmtShort(revToday));
+            _apSetText('apPrgTx', txToday.length + ' tx');
+            _apSetText('apPrgItems', itemsToday + ' pcs');
+            var pct = revYest > 0 ? Math.round(revToday / revYest * 100) : (revToday > 0 ? 100 : 0);
+            _apSetText('apRealisasiPct', pct + '%');
+            _apSetText('apTxSubtitle', txToday.length + ' transaksi hari ini');
+            var recent = transactionHistory.slice(0, 5);
+            var mIcons = { cash: '💵', card: '💳', wallet: '📱', bank: '🏦' };
+            var tbody = document.getElementById('apRecentTxBody');
+            if (tbody) {
+                if (!recent.length) { tbody.innerHTML = '<tr><td colspan=\"5\" style=\"text-align:center;color:var(--text-muted);padding:1rem\">Belum ada transaksi</td></tr>'; }
+                else { tbody.innerHTML = recent.map(function (t) { var d = new Date(t.timestamp); var time = d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }); return '<tr><td class=\"tb-bold\" style=\"font-family:monospace;font-size:.68rem\">#' + t.id + '</td><td class=\"tb-bold\">' + t.customer + '</td><td>' + (mIcons[t.method] || '💰') + ' ' + t.methodLabel + '</td><td class=\"tb-bold\" style=\"color:var(--color-ok)\">Rp ' + t.total.toLocaleString('id-ID') + '</td><td><span class=\"ap-pill ok\">✓ Sukses</span></td></tr>'; }).join(''); }
+            }
+            var feedEl = document.getElementById('apActivityFeed');
+            if (feedEl) {
+                var acts = txToday.slice(0, 4);
+                if (!acts.length) { feedEl.innerHTML = '<div class=\"ap-act-item\"><div class=\"ap-act-dot\" style=\"background:var(--text-muted)\"></div><div class=\"ap-act-text\">Belum ada aktivitas hari ini.</div></div>'; }
+                else { var colors = { cash: 'var(--color-ok)', card: '#60a5fa', wallet: 'var(--color-low)', bank: '#a78bfa' }; feedEl.innerHTML = acts.map(function (t) { var d = new Date(t.timestamp); var ago = _apTimeAgo(t.timestamp); return '<div class=\"ap-act-item\"><div class=\"ap-act-dot\" style=\"background:' + (colors[t.method] || 'var(--accent)') + '\"></div><div class=\"ap-act-text\"><strong>' + t.customer + '</strong> bayar via ' + t.methodLabel + ' — Rp ' + apFmtShort(t.total) + '</div><div class=\"ap-act-time\">' + ago + '</div></div>'; }).join(''); }
+            }
+            apUpdateNavBadges();
+        }
+
+        function apRenderTransaksi() {
+            if (typeof transactionHistory === 'undefined') return;
+            var totalRev = transactionHistory.reduce(function (a, t) { return a + t.total; }, 0);
+            var totalTx = transactionHistory.length;
+            var avgOrder = totalTx ? Math.round(totalRev / totalTx) : 0;
+            _apSetText('apTxRevTotal', 'Rp ' + apFmtShort(totalRev));
+            _apSetText('apTxCount', totalTx);
+            _apSetText('apTxAvg', 'Rp ' + apFmtShort(avgOrder));
+            var mIcons = { cash: '💵', card: '💳', wallet: '📱', bank: '🏦' };
+            var tbody = document.getElementById('apTxTableBody');
+            if (!tbody) return;
+            var rows = transactionHistory.slice(0, 20);
+            if (!rows.length) { tbody.innerHTML = '<tr><td colspan=\"7\" style=\"text-align:center;color:var(--text-muted);padding:1rem\">Belum ada transaksi</td></tr>'; return; }
+            tbody.innerHTML = rows.map(function (t) { var d = new Date(t.timestamp); var time = d.toLocaleString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); var itemsStr = t.items.map(function (i) { return i.name + '×' + i.qty; }).join(', '); return '<tr><td class=\"tb-bold\" style=\"font-family:monospace;font-size:.68rem\">#' + t.id + '</td><td class=\"tb-bold\">' + t.customer + '</td><td>' + (mIcons[t.method] || '💰') + ' ' + t.methodLabel + '</td><td style=\"max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\" title=\"' + itemsStr + '\">' + itemsStr + '</td><td class=\"tb-bold\" style=\"color:var(--color-ok)\">Rp ' + t.total.toLocaleString('id-ID') + '</td><td>' + time + '</td><td><span class=\"ap-pill ok\">✓ Sukses</span></td></tr>'; }).join('');
+        }
+
+        function apRenderMenuTable() {
+            if (typeof menuItems === 'undefined') return;
+            var tbody = document.getElementById('apMenuTableBody');
+            var count = document.getElementById('apMenuCount');
+            if (count) count.textContent = menuItems.length + ' item';
+            if (!tbody) return;
+            if (!menuItems.length) { tbody.innerHTML = '<tr><td colspan=\"6\" style=\"text-align:center;color:var(--text-muted);padding:1rem\">Belum ada menu.</td></tr>'; return; }
+            tbody.innerHTML = menuItems.map(function (m) { var sc = m.stock === 0 ? 'danger' : m.stock <= 10 ? 'warn' : 'ok'; var stl = m.stock === 0 ? 'Habis' : m.stock <= 10 ? '⚠️ ' + m.stock : '✓ ' + m.stock; return '<tr><td class=\"tb-bold\">' + m.name + '</td><td>' + m.category + '</td><td class=\"tb-bold\" style=\"color:var(--accent)\">Rp ' + m.price.toLocaleString('id-ID') + '</td><td><span class=\"ap-pill ' + sc + '\">' + stl + '</span></td><td>' + (m.badge ? '<span class=\"ap-pill accent\">' + m.badge + '</span>' : '<span class=\"ap-pill muted\">—</span>') + '</td><td style=\"display:flex;gap:5px;flex-wrap:wrap\"><button class=\"ap-row-btn\" onclick=\"openStockModal()\">📦 Stok</button><button class=\"ap-row-btn d\" onclick=\"apDeleteMenu(' + m.id + ')\">✕</button></td></tr>'; }).join('');
+        }
+
+        function apDeleteMenu(id) {
+            if (!confirm('Hapus menu ini?')) return;
+            if (typeof menuItems !== 'undefined') {
+                var idx = menuItems.findIndex(function (m) { return m.id === id; });
+                if (idx !== -1) { var name = menuItems[idx].name; menuItems.splice(idx, 1); renderMenu(); renderCategories(); apRenderMenuTable(); showToast('🗑 Menu \"' + name + '\" dihapus.', 'ok'); }
+            }
+        }
+
+        function apRenderAnalitik() {
+            if (typeof transactionHistory === 'undefined') return;
+            var total = transactionHistory.length;
+            var success = transactionHistory.filter(function (t) { return t.status === 'success'; }).length;
+            var payRate = total ? Math.round(success / total * 100) : 0;
+            _apSetText('apAnaPayRate', payRate + '%');
+            var weekStart = Date.now() - 7 * 86400000;
+            var txWeek = transactionHistory.filter(function (t) { return t.timestamp >= weekStart; });
+            var weekRev = txWeek.reduce(function (a, t) { return a + t.total; }, 0);
+            _apSetText('apAnaWeekRev', 'Rp ' + apFmtShort(weekRev));
+            var itemSales = {};
+            transactionHistory.forEach(function (t) { t.items.forEach(function (i) { if (!itemSales[i.name]) itemSales[i.name] = { qty: 0, rev: 0 }; itemSales[i.name].qty += i.qty; itemSales[i.name].rev += i.price * i.qty; }); });
+            var topItem = Object.keys(itemSales).sort(function (a, b) { return itemSales[b].qty - itemSales[a].qty; })[0] || '—';
+            _apSetText('apAnaBest', topItem);
+            var methodCount = { cash: 0, card: 0, wallet: 0, bank: 0 };
+            transactionHistory.forEach(function (t) { if (methodCount[t.method] !== undefined) methodCount[t.method]++; });
+            var topMethodKey = Object.keys(methodCount).sort(function (a, b) { return methodCount[b] - methodCount[a]; })[0];
+            var methodNames = { cash: 'Cash', card: 'Kartu', wallet: 'E-Wallet', bank: 'Transfer' };
+            _apSetText('apAnaTopMethod', methodNames[topMethodKey] || '—');
+            var barEl = document.getElementById('apBarChart7');
+            if (barEl) {
+                var days = []; var maxV = 0;
+                for (var d = 6; d >= 0; d--) {
+                    var dt = new Date(); dt.setDate(dt.getDate() - d); dt.setHours(0, 0, 0, 0);
+                    var de = new Date(dt); de.setHours(23, 59, 59, 999);
+                    var rev = transactionHistory.filter(function (t) { return t.timestamp >= dt.getTime() && t.timestamp <= de.getTime(); }).reduce(function (a, t) { return a + t.total; }, 0);
+                    var dn = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'][dt.getDay()];
+                    days.push({ rev: rev, lbl: dn });
+                    if (rev > maxV) maxV = rev;
+                }
+                maxV = maxV || 1;
+                barEl.innerHTML = days.map(function (d) { var h = Math.round(d.rev / maxV * 90); return '<div class=\"ap-bar\"><div class=\"ap-bar-fill\" style=\"height:' + (h || 2) + 'px\" data-val=\"Rp ' + apFmtShort(d.rev) + '\"></div><div class=\"ap-bar-lbl\">' + d.lbl + '</div></div>'; }).join('');
+            }
+            var donutSvg = document.getElementById('apDonutSvg');
+            var donutLegend = document.getElementById('apDonutLegend');
+            var dColors = { cash: '#00c853', card: '#60a5fa', wallet: '#f97316', bank: '#a78bfa' };
+            var dLabels = { cash: 'Cash', card: 'Kartu', wallet: 'E-Wallet', bank: 'Transfer' };
+            var dKeys = ['cash', 'card', 'wallet', 'bank'];
+            var dTotal = dKeys.reduce(function (a, k) { return a + methodCount[k]; }, 0) || 1;
+            if (donutSvg) {
+                var R = 40, cx = 50, cy = 50, start = 0, paths = '';
+                dKeys.forEach(function (k) {
+                    var pct = methodCount[k] / dTotal;
+                    var angle = pct * 2 * Math.PI;
+                    if (pct < 0.005) return;
+                    var x1 = cx + R * Math.sin(start);
+                    var y1 = cy - R * Math.cos(start);
+                    var x2 = cx + R * Math.sin(start + angle);
+                    var y2 = cy - R * Math.cos(start + angle);
+                    var lg = angle > Math.PI ? 1 : 0;
+                    paths += '<path d=\"M ' + cx + ' ' + cy + ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) + ' A ' + R + ' ' + R + ' 0 ' + lg + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + ' Z\" fill=\"' + dColors[k] + '\" opacity=\".85\"/>';
+                    start += angle;
+                });
+                paths += '<circle cx=\"50\" cy=\"50\" r=\"24\" fill=\"var(--bg-card)\"/>';
+                paths += '<text x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" font-weight=\"bold\" fill=\"var(--accent)\">' + total + ' Tx</text>';
+                donutSvg.innerHTML = paths;
+            }
+            if (donutLegend) {
+                donutLegend.innerHTML = dKeys.map(function (k) { var pct = Math.round(methodCount[k] / dTotal * 100); return '<div class=\"ap-donut-leg-item\"><div class=\"ap-donut-dot\" style=\"background:' + dColors[k] + '\"></div><span>' + dLabels[k] + ' — ' + pct + '%</span></div>'; }).join('');
+            }
+            var topProdEl = document.getElementById('apTopProducts');
+            if (topProdEl) {
+                var sorted = Object.keys(itemSales).sort(function (a, b) { return itemSales[b].rev - itemSales[a].rev; }).slice(0, 4);
+                var maxRev2 = sorted.length ? itemSales[sorted[0]].rev : 1;
+                var medals = ['🥇', '🥈', '🥉', '4️⃣'];
+                if (!sorted.length) { topProdEl.innerHTML = '<div style=\"font-size:.72rem;color:var(--text-muted)\">Belum ada data.</div>'; }
+                else { topProdEl.innerHTML = sorted.map(function (name, i) { var pct = Math.round(itemSales[name].rev / maxRev2 * 100); return '<div style=\"margin-bottom:8px\"><div style=\"display:flex;justify-content:space-between;font-size:.72rem;margin-bottom:3px\"><span style=\"color:var(--text-primary);font-weight:700\">' + medals[i] + ' ' + name + '</span><span style=\"color:var(--color-ok);font-weight:700\">Rp ' + apFmtShort(itemSales[name].rev) + '</span></div><div class=\"ap-prog-track\"><div class=\"ap-prog-fill\" style=\"width:' + pct + '%;background:var(--accent)\"></div></div></div>'; }).join(''); }
+            }
+        }
+
+        function apRenderPengaturan() {
+            var menuCount = (typeof menuItems !== 'undefined') ? menuItems.length : 0;
+            var txCount = (typeof transactionHistory !== 'undefined') ? transactionHistory.length : 0;
+            _apSetText('apInfoMenuCount', menuCount + ' item');
+            _apSetText('apInfoTxCount', txCount);
+        }
+
+        function apSwitchMediaType(type) {
+            apCurrentMediaType = type;
+            document.getElementById('apUploadPhotoArea').style.display = type === 'photo' ? 'block' : 'none';
+            document.getElementById('apUploadVideoArea').style.display = type === 'video' ? 'block' : 'none';
+            document.getElementById('apBtnTypePhoto').classList.toggle('active', type === 'photo');
+            document.getElementById('apBtnTypeVideo').classList.toggle('active', type === 'video');
+        }
+
+        function apDragOver(e, zoneId) { e.preventDefault(); document.getElementById(zoneId).classList.add('dragover'); }
+        function apDragLeave(zoneId) { document.getElementById(zoneId).classList.remove('dragover'); }
+        function apOnDrop(e, type) { e.preventDefault(); document.getElementById(type === 'photo' ? 'apPhotoDropZone' : 'apVideoDropZone').classList.remove('dragover'); var file = e.dataTransfer.files[0]; if (!file) return; if (type === 'photo') apProcessPhoto(file); else apProcessVideo(file); }
+        function apOnPhotoChange(e) { if (e.target.files[0]) apProcessPhoto(e.target.files[0]); }
+        function apOnVideoChange(e) { if (e.target.files[0]) apProcessVideo(e.target.files[0]); }
+
+        function apProcessPhoto(file) { if (!file.type.startsWith('image/')) return alert('File harus berupa gambar!'); if (file.size > 5 * 1024 * 1024) return alert('Ukuran foto maksimal 5 MB!'); _apFakeProgress('apPhoto', function () { var reader = new FileReader(); reader.onload = function (ev) { apUploadedPhoto = ev.target.result; document.getElementById('apPhotoPreviewImg').src = apUploadedPhoto; document.getElementById('apPhotoPreview').style.display = 'block'; document.getElementById('apPhotoDropZone').style.display = 'none'; }; reader.readAsDataURL(file); }); }
+        function apProcessVideo(file) { if (!file.type.startsWith('video/')) return alert('File harus berupa video!'); if (file.size > 20 * 1024 * 1024) return alert('Ukuran video maksimal 20 MB!'); _apFakeProgress('apVideo', function () { var reader = new FileReader(); reader.onload = function (ev) { apUploadedVideo = ev.target.result; document.getElementById('apVideoPreviewEl').src = apUploadedVideo; document.getElementById('apVideoPreview').style.display = 'block'; document.getElementById('apVideoDropZone').style.display = 'none'; }; reader.readAsDataURL(file); }); }
+        function apRemoveMedia(type) { if (type === 'photo') { apUploadedPhoto = null; document.getElementById('apPhotoPreview').style.display = 'none'; document.getElementById('apPhotoDropZone').style.display = 'flex'; document.getElementById('adminMenuPhoto').value = ''; } else { apUploadedVideo = null; document.getElementById('apVideoPreview').style.display = 'none'; document.getElementById('apVideoDropZone').style.display = 'flex'; document.getElementById('adminMenuVideo').value = ''; } }
+        function _apFakeProgress(prefix, callback) { var wrap = document.getElementById(prefix + 'ProgressWrap'); var fill = document.getElementById(prefix + 'ProgressFill'); wrap.style.display = 'block'; fill.style.width = '0%'; var w = 0; var iv = setInterval(function () { w += Math.random() * 30 + 10; if (w >= 100) { w = 100; fill.style.width = '100%'; clearInterval(iv); setTimeout(function () { wrap.style.display = 'none'; callback(); }, 200); } else fill.style.width = w + '%'; }, 80); }
+
+        var _origClearAdminInputs = (typeof clearAdminInputs === 'function') ? clearAdminInputs : null;
+        var _origClearAdminInputsFn = clearAdminInputs;
+        function clearAdminInputs() {
+            ['adminMenuName', 'adminMenuDesc', 'adminMenuPrice', 'adminMenuCategory'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = ''; });
+            var bdg = document.getElementById('adminMenuBadge'); if (bdg) bdg.value = '';
+            var stk = document.getElementById('adminMenuStock'); if (stk) stk.value = '50';
+            apRemoveMedia('photo'); apRemoveMedia('video');
+            apSwitchMediaType('photo');
+            if (typeof uploadedPhotoData !== 'undefined') uploadedPhotoData = null;
+            if (typeof uploadedVideoData !== 'undefined') uploadedVideoData = null;
+        }
+
+        var _origAddMenuAdminFn = addMenuAdmin;
+        function addMenuAdmin() {
+            if (typeof uploadedPhotoData !== 'undefined') uploadedPhotoData = apUploadedPhoto;
+            if (typeof uploadedVideoData !== 'undefined') uploadedVideoData = apUploadedVideo;
+            if (typeof currentMediaType !== 'undefined') currentMediaType = apCurrentMediaType;
+            if (_origAddMenuAdminFn) _origAddMenuAdminFn();
+            setTimeout(function () { apRenderMenuTable(); }, 100);
+        }
+
+        function _apSetText(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+        function _apSetBar(id, pct) { var el = document.getElementById(id); if (el) el.style.width = Math.min(100, Math.max(0, pct)) + '%'; }
+        function _apTimeAgo(ts) { var diff = Math.floor((Date.now() - ts) / 1000); if (diff < 60) return diff + 'd lalu'; if (diff < 3600) return Math.floor(diff / 60) + ' mnt lalu'; if (diff < 86400) return Math.floor(diff / 3600) + ' jam lalu'; return Math.floor(diff / 86400) + ' hari lalu'; }
+
         // INIT
         renderCategories();
         renderMenu();
         loadSavedTheme();
         setTimeout(function () { startTutorial(); }, 600);
     </script>
+
+    <div class="auth-overlay hidden" id="authOverlay">
+        <div class="auth-modal" id="authModal">
+            <div class="auth-header" id="authHeader">
+                <div class="auth-header-icon" id="authHeaderIcon">🔐</div>
+                <h2 id="authHeaderTitle">Admin Authentication</h2>
+                <p id="authHeaderSubtitle">Masukkan PIN atau Password Anda</p>
+            </div>
+            <div class="lockout-banner" id="lockoutBanner">
+                Terkunci selama <span id="lockoutSeconds">30</span> detik. Coba lagi nanti.
+            </div>
+            <div class="tab-bar" id="tabBar">
+                <button class="tab-btn active" onclick="switchAuthTab('pin')">
+                    🔑 PIN
+                </button>
+                <button class="tab-btn" onclick="switchAuthTab('password')">
+                    🔓 Password
+                </button>
+            </div>
+            <div class="auth-body">
+                <div class="panel active" id="panelPin">
+                    <div class="pin-dots">
+                        <div class="pin-dot" id="dot0"></div>
+                        <div class="pin-dot" id="dot1"></div>
+                        <div class="pin-dot" id="dot2"></div>
+                        <div class="pin-dot" id="dot3"></div>
+                        <div class="pin-dot" id="dot4"></div>
+                        <div class="pin-dot" id="dot5"></div>
+                    </div>
+                    <div class="numpad">
+                        <button class="num-key" onclick="authPinKey(1)">1</button>
+                        <button class="num-key" onclick="authPinKey(2)">2</button>
+                        <button class="num-key" onclick="authPinKey(3)">3</button>
+                        <button class="num-key" onclick="authPinKey(4)">4</button>
+                        <button class="num-key" onclick="authPinKey(5)">5</button>
+                        <button class="num-key" onclick="authPinKey(6)">6</button>
+                        <button class="num-key" onclick="authPinKey(7)">7</button>
+                        <button class="num-key" onclick="authPinKey(8)">8</button>
+                        <button class="num-key" onclick="authPinKey(9)">9</button>
+                        <button class="num-key" onclick="authPinKey('clear')">Clear</button>
+                        <button class="num-key" onclick="authPinKey(0)">0</button>
+                        <button class="num-key" onclick="authPinKey('delete')">⌫</button>
+                    </div>
+                    <div class="error-box" id="pinError"></div>
+                    <button class="btn-link" onclick="showChangePIN()">Ubah PIN</button>
+                </div>
+                <div class="panel" id="panelPassword">
+                    <label class="field-label">Password</label>
+                    <div class="field-wrap">
+                        <input type="password" id="passwordInput" class="field-input" placeholder="Masukkan Password"
+                            onkeypress="if(event.key==='Enter')authCheckPassword()">
+                        <button class="eye-btn" onclick="authToggleEye()">👁️</button>
+                    </div>
+                    <div class="error-box" id="passwordError"></div>
+                    <div class="attempts-hint">Sisa Kesempatan: <span id="attemptsLeft">3</span>/3</div>
+                    <button class="btn-primary" onclick="authCheckPassword()">Login</button>
+                    <button class="btn-link" onclick="showChangePassword()">Ubah Password</button>
+                </div>
+                <div class="panel" id="panelChangePIN">
+                    <div class="change-header">
+                        <button class="change-back" onclick="cancelAuthChange()">← </button>
+                        <div>
+                            <h3>Ubah PIN</h3>
+                            <p style="font-size:.72rem;color:var(--text-muted);">PIN harus 4-8 digit</p>
+                        </div>
+                    </div>
+                    <label class="field-label">PIN Baru</label>
+                    <input type="password" id="newPinInput" class="field-input" placeholder="6 digit PIN" maxlength="8">
+                    <label class="field-label" style="margin-top:12px;">Konfirmasi PIN</label>
+                    <input type="password" id="confirmPinInput" class="field-input" placeholder="Konfirmasi PIN"
+                        maxlength="8">
+                    <div class="error-box" id="changePinError"></div>
+                    <button class="btn-primary" onclick="authSavePIN()">Simpan PIN Baru</button>
+                    <button class="btn-ghost" onclick="cancelAuthChange()">Batal</button>
+                </div>
+                <div class="panel" id="panelChangePassword">
+                    <div class="change-header">
+                        <button class="change-back" onclick="cancelAuthChange()">←</button>
+                        <div>
+                            <h3>Ubah Password</h3>
+                            <p style="font-size:.72rem;color:var(--text-muted);">Minimal 4 karakter</p>
+                        </div>
+                    </div>
+                    <label class="field-label">Password Baru</label>
+                    <input type="password" id="newPasswordInput" class="field-input" placeholder="Password baru">
+                    <label class="field-label" style="margin-top:12px;">Konfirmasi Password</label>
+                    <input type="password" id="confirmPasswordInput" class="field-input"
+                        placeholder="Konfirmasi password">
+                    <div class="error-box" id="changePasswordError"></div>
+                    <button class="btn-primary" onclick="authSavePassword()">Simpan Password Baru</button>
+                    <button class="btn-ghost" onclick="cancelAuthChange()">Batal</button>
+                </div>
+                <div class="panel" id="panelSuccess">
+                    <div style="text-align:center;">
+                        <div class="success-icon">✓</div>
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--color-ok);margin-bottom:6px;">Akses
+                            Diberikan</h3>
+                        <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:14px;">Selamat datang di Panel
+                            Admin</p>
+                        <button class="btn-primary" onclick="authGoToDashboard()">Ke Panel Admin</button>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-footer" id="authFooter">
+                <button class="btn-ghost" onclick="closeAuthModal()">Batal</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
