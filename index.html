@@ -5805,11 +5805,267 @@
             border-color: var(--accent);
             color: var(--accent);
         }
+
+        /* ═══════════════════════════════════════════════
+           LOGIN PAGE OVERLAY
+        ═══════════════════════════════════════════════ */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(135deg,
+                    #0f172a 0%,
+                    #1e3a5f 35%,
+                    #3b2f2f 70%,
+                    #5a3e2b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .4s ease;
+        }
+
+        .login-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: var(--bg-panel);
+            border: 1.5px solid var(--accent);
+            border-radius: 14px;
+            padding: 2.6rem 2.2rem 2rem;
+            width: 400px;
+            max-width: 92vw;
+            box-shadow: var(--shadow-xl), 0 0 60px rgba(var(--accent-rgb), .1);
+            animation: slideUp .4s ease;
+            position: relative;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo h1 {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        .login-logo p {
+            font-size: .72rem;
+            color: var(--text-muted);
+            margin-top: .35rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .login-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: .3rem 0 1.8rem;
+            opacity: .4;
+        }
+
+        .login-field {
+            margin-bottom: 1.1rem;
+        }
+
+        .login-field label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: .4rem;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+        }
+
+        .login-field-wrap {
+            position: relative;
+        }
+
+        .login-field input {
+            width: 100%;
+            padding: .78rem 1rem;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-input);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: .9rem;
+            transition: var(--transition);
+            outline: none;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-field input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .12);
+            background: var(--bg-card);
+        }
+
+        .login-eye {
+            position: absolute;
+            right: .7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-muted);
+            padding: .2rem;
+            line-height: 1;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: .88rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: var(--text-on-accent);
+            font-weight: 800;
+            font-size: .95rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: .6rem;
+            letter-spacing: .6px;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .login-error {
+            margin-top: .85rem;
+            padding: .65rem 1rem;
+            background: rgba(244, 67, 54, .1);
+            border: 1px solid rgba(244, 67, 54, .3);
+            border-radius: var(--radius);
+            color: #f56565;
+            font-size: .8rem;
+            display: none;
+            animation: fadeIn .3s ease;
+        }
+
+        .login-error.visible {
+            display: block;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.6rem;
+            font-size: .68rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Logout button in header */
+        .logout-btn {
+            display: none;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(244, 67, 54, .12);
+            color: #f56565;
+            border: 1px solid rgba(244, 67, 54, .3);
+            padding: .5rem .9rem;
+            border-radius: var(--radius);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: .82rem;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background: rgba(244, 67, 54, .22);
+            border-color: #f56565;
+        }
+
+        .login-user-chip {
+            display: none;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(var(--accent-rgb), .1);
+            border: 1px solid rgba(var(--accent-rgb), .25);
+            border-radius: 20px;
+            padding: .35rem .8rem;
+            font-size: .75rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Tab bar di login card */
+        .login-tab-bar {
+            display: flex;
+            gap: 0;
+            margin-bottom: 1.4rem;
+            border: 1.5px solid var(--border-input);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: .6rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: .82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: .3px;
+        }
+
+        .login-tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: var(--text-on-accent);
+        }
+
+        .login-tab:not(.active):hover {
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), .07);
+        }
+
+        /* Panel dalam login card */
+        .login-panel {
+            display: none;
+        }
+
+        .login-panel.active {
+            display: block;
+        }
+
+        .login-success {
+            margin-top: .85rem;
+            padding: .65rem 1rem;
+            background: rgba(0, 200, 83, .1);
+            border: 1px solid rgba(0, 200, 83, .3);
+            border-radius: var(--radius);
+            color: #00c853;
+            font-size: .8rem;
+            display: none;
+            animation: fadeIn .3s ease;
+        }
+
+        .login-success.visible {
+            display: block;
+        }
     </style>
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
         import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc, setDoc, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAjQCHeifoKSYr7UDrDiIEaP8Hyn31fJPw",
@@ -5835,6 +6091,40 @@
         window._fsAddDoc = addDoc;
         window._fsSetDoc = setDoc;
         window._fsCollection = collection;
+
+        // ── Firebase Auth ──────────────────────────────────────────
+        const auth = getAuth(app);
+        window._auth = auth;
+        window._signOut = function () { return signOut(auth); };
+        window._loginWithEmail = function (email, password) {
+            return signInWithEmailAndPassword(auth, email, password);
+        };
+        window._registerWithEmail = function (email, password, displayName) {
+            return createUserWithEmailAndPassword(auth, email, password).then(function (cred) {
+                if (displayName && cred.user) {
+                    return updateProfile(cred.user, { displayName: displayName }).then(function () { return cred; });
+                }
+                return cred;
+            });
+        };
+
+        onAuthStateChanged(auth, function (user) {
+            var overlay = document.getElementById('loginOverlay');
+            var logoutBtn = document.getElementById('logoutBtn');
+            var userChip = document.getElementById('loginUserChip');
+            var userEmailSpan = document.getElementById('loginUserEmail');
+            if (user) {
+                if (overlay) overlay.classList.add('hidden');
+                if (logoutBtn) logoutBtn.style.display = 'flex';
+                if (userChip) userChip.style.display = 'flex';
+                if (userEmailSpan) userEmailSpan.textContent = user.displayName || user.email;
+            } else {
+                if (overlay) overlay.classList.remove('hidden');
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (userChip) userChip.style.display = 'none';
+            }
+        });
+        // ──────────────────────────────────────────────────────────
 
         // Real-time listener — menuItems
         onSnapshot(menuCol, function (snapshot) {
@@ -5867,18 +6157,249 @@
 </head>
 
 <body>
+    <!-- ════════════════════════════════════════════════════
+         LOGIN OVERLAY — muncul sebelum user login
+    ════════════════════════════════════════════════════ -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <div class="login-logo">
+                <h1>Billsmart.id</h1>
+                <p>POS Digital Exhibition</p>
+            </div>
+            <div class="login-divider"></div>
+
+            <!-- Tab bar -->
+            <div class="login-tab-bar">
+                <button class="login-tab active" id="tabLoginBtn" onclick="switchLoginTab('login')">🔑 Masuk</button>
+                <button class="login-tab" id="tabRegisterBtn" onclick="switchLoginTab('register')">📝 Daftar</button>
+            </div>
+
+            <!-- ── Panel Login ── -->
+            <div class="login-panel active" id="panelLogin">
+                <div class="login-field">
+                    <label>Email</label>
+                    <div class="login-field-wrap">
+                        <input type="email" id="loginEmail" placeholder="email@contoh.com" autocomplete="email"
+                            onkeypress="if(event.key==='Enter')document.getElementById('loginPassword').focus()">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Password</label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="loginPassword" placeholder="Masukkan password"
+                            autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+                        <button class="login-eye" onclick="toggleLoginEye('loginPassword')"
+                            title="Tampilkan password">👁️</button>
+                    </div>
+                </div>
+                <button class="login-btn" id="loginSubmitBtn" onclick="doLogin()">Masuk →</button>
+                <div class="login-error" id="loginError"></div>
+                <div style="text-align:center;margin-top:.9rem;font-size:.75rem;color:var(--text-muted)">
+                    Belum punya akun?
+                    <span style="color:var(--accent);cursor:pointer;font-weight:700"
+                        onclick="switchLoginTab('register')">Daftar sekarang</span>
+                </div>
+            </div>
+
+            <!-- ── Panel Daftar ── -->
+            <div class="login-panel" id="panelRegister">
+                <div class="login-field">
+                    <label>Nama Lengkap</label>
+                    <div class="login-field-wrap">
+                        <input type="text" id="regName" placeholder="Nama Anda"
+                            onkeypress="if(event.key==='Enter')document.getElementById('regEmail').focus()">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Email</label>
+                    <div class="login-field-wrap">
+                        <input type="email" id="regEmail" placeholder="email@contoh.com" autocomplete="email"
+                            onkeypress="if(event.key==='Enter')document.getElementById('regPassword').focus()">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Password <span style="font-weight:400;text-transform:none;letter-spacing:0">(min. 6
+                            karakter)</span></label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="regPassword" placeholder="Buat password"
+                            onkeypress="if(event.key==='Enter')document.getElementById('regPasswordConfirm').focus()">
+                        <button class="login-eye" onclick="toggleLoginEye('regPassword')"
+                            title="Tampilkan password">👁️</button>
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Konfirmasi Password</label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="regPasswordConfirm" placeholder="Ulangi password"
+                            onkeypress="if(event.key==='Enter')doRegister()">
+                        <button class="login-eye" onclick="toggleLoginEye('regPasswordConfirm')"
+                            title="Tampilkan password">👁️</button>
+                    </div>
+                </div>
+                <button class="login-btn" id="registerSubmitBtn" onclick="doRegister()">Buat Akun →</button>
+                <div class="login-error" id="registerError"></div>
+                <div class="login-success" id="registerSuccess"></div>
+                <div style="text-align:center;margin-top:.9rem;font-size:.75rem;color:var(--text-muted)">
+                    Sudah punya akun?
+                    <span style="color:var(--accent);cursor:pointer;font-weight:700"
+                        onclick="switchLoginTab('login')">Masuk di sini</span>
+                </div>
+            </div>
+
+            <div class="login-footer">
+                Billsmart.id &copy; 2025 · POS Digital Exhibition
+            </div>
+        </div>
+    </div>
+
+    <!-- Script login/register (non-module agar onclick bisa akses fungsi global) -->
+    <script>
+        /* ── Tab switcher ── */
+        function switchLoginTab(tab) {
+            var isLogin = tab === 'login';
+            document.getElementById('tabLoginBtn').classList.toggle('active', isLogin);
+            document.getElementById('tabRegisterBtn').classList.toggle('active', !isLogin);
+            document.getElementById('panelLogin').classList.toggle('active', isLogin);
+            document.getElementById('panelRegister').classList.toggle('active', !isLogin);
+            // Clear errors saat ganti tab
+            ['loginError', 'registerError', 'registerSuccess'].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) { el.classList.remove('visible'); el.textContent = ''; }
+            });
+        }
+
+        /* ── Helper error/success ── */
+        function _authErrMsg(code) {
+            var map = {
+                'auth/user-not-found': '⚠️ Akun dengan email ini tidak ditemukan.',
+                'auth/wrong-password': '⚠️ Password salah. Coba lagi.',
+                'auth/invalid-credential': '⚠️ Email atau password salah.',
+                'auth/invalid-email': '⚠️ Format email tidak valid.',
+                'auth/too-many-requests': '⚠️ Terlalu banyak percobaan. Tunggu beberapa saat.',
+                'auth/network-request-failed': '⚠️ Tidak ada koneksi internet.',
+                'auth/email-already-in-use': '⚠️ Email ini sudah terdaftar. Silakan masuk.',
+                'auth/weak-password': '⚠️ Password terlalu lemah. Minimal 6 karakter.',
+                'auth/operation-not-allowed': '⚠️ Metode ini belum diaktifkan di Firebase Console.',
+                'auth/user-disabled': '⚠️ Akun ini dinonaktifkan. Hubungi admin.',
+            };
+            return map[code] || ('⚠️ Terjadi kesalahan (' + (code || 'unknown') + '). Coba lagi.');
+        }
+
+        function _showAuthError(elId, code) {
+            var el = document.getElementById(elId);
+            if (!el) return;
+            el.textContent = _authErrMsg(code);
+            el.classList.add('visible');
+        }
+
+        /* ── LOGIN ── */
+        function doLogin() {
+            var email = (document.getElementById('loginEmail').value || '').trim();
+            var password = document.getElementById('loginPassword').value;
+            var btn = document.getElementById('loginSubmitBtn');
+            var errEl = document.getElementById('loginError');
+
+            errEl.classList.remove('visible');
+            errEl.textContent = '';
+
+            if (!email || !password) {
+                errEl.textContent = '⚠️ Email dan password tidak boleh kosong.';
+                errEl.classList.add('visible');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Memverifikasi…';
+
+            function tryLogin() {
+                if (!window._loginWithEmail) {
+                    setTimeout(tryLogin, 500); return;
+                }
+                window._loginWithEmail(email, password)
+                    .then(function () { btn.textContent = '✓ Berhasil!'; })
+                    .catch(function (err) {
+                        btn.disabled = false;
+                        btn.textContent = 'Masuk →';
+                        console.error('[Auth] Login error:', err.code, err.message);
+                        _showAuthError('loginError', err.code);
+                    });
+            }
+            tryLogin();
+        }
+
+        /* ── REGISTER ── */
+        function doRegister() {
+            var name = (document.getElementById('regName').value || '').trim();
+            var email = (document.getElementById('regEmail').value || '').trim();
+            var password = document.getElementById('regPassword').value;
+            var confirm = document.getElementById('regPasswordConfirm').value;
+            var btn = document.getElementById('registerSubmitBtn');
+            var errEl = document.getElementById('registerError');
+            var okEl = document.getElementById('registerSuccess');
+
+            errEl.classList.remove('visible'); errEl.textContent = '';
+            okEl.classList.remove('visible'); okEl.textContent = '';
+
+            if (!name) { errEl.textContent = '⚠️ Nama tidak boleh kosong.'; errEl.classList.add('visible'); return; }
+            if (!email) { errEl.textContent = '⚠️ Email tidak boleh kosong.'; errEl.classList.add('visible'); return; }
+            if (password.length < 6) { errEl.textContent = '⚠️ Password minimal 6 karakter.'; errEl.classList.add('visible'); return; }
+            if (password !== confirm) { errEl.textContent = '⚠️ Konfirmasi password tidak cocok.'; errEl.classList.add('visible'); return; }
+
+            btn.disabled = true;
+            btn.textContent = 'Mendaftarkan…';
+
+            function tryRegister() {
+                if (!window._registerWithEmail) {
+                    setTimeout(tryRegister, 500); return;
+                }
+                window._registerWithEmail(email, password, name)
+                    .then(function () {
+                        btn.textContent = '✓ Akun dibuat!';
+                        okEl.textContent = '✅ Akun berhasil dibuat! Selamat datang, ' + name + ' 🎉';
+                        okEl.classList.add('visible');
+                        // Auto-login setelah register sukses (Firebase sudah otomatis login)
+                        setTimeout(function () { btn.disabled = false; btn.textContent = 'Buat Akun →'; }, 2000);
+                    })
+                    .catch(function (err) {
+                        btn.disabled = false;
+                        btn.textContent = 'Buat Akun →';
+                        console.error('[Auth] Register error:', err.code, err.message);
+                        _showAuthError('registerError', err.code);
+                    });
+            }
+            tryRegister();
+        }
+
+        /* ── Toggle password visibility ── */
+        function toggleLoginEye(inputId) {
+            var inp = document.getElementById(inputId);
+            if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
+        }
+
+        /* ── Logout ── */
+        function doLogout() {
+            if (window._signOut) {
+                window._signOut().catch(function (e) { console.error(e); });
+            }
+        }
+    </script>
+
     <!-- Coffee SaaS background grid overlay -->
     <div class="grid-overlay"></div>
 
     <div class="header">
         <h1>Billsmart.id</h1>
         <div style="display:flex;gap:.5rem;align-items:center">
+            <div class="login-user-chip" id="loginUserChip">
+                👤 <span id="loginUserEmail"></span>
+            </div>
             <button class="header-btn dash-btn" onclick="openDashboard()">📊 Dashboard</button>
             <button class="header-btn hist-btn" onclick="openAdminAuthForHistory()">🧾 Riwayat</button>
             <button class="header-btn stock-btn" onclick="openAdminAuthForStock()">📦 Stok</button>
             <button class="header-btn" onclick="toggleThemePanel()">🎨 Tema</button>
             <button class="header-btn" onclick="startTutorial()">🎓 Panduan</button>
             <button class="header-btn" onclick="openAdminAuthForMenu()">➕ Tambah Menu</button>
+            <button class="logout-btn" id="logoutBtn" onclick="doLogout()">⏻ Keluar</button>
         </div>
     </div>
 
